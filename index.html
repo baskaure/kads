@@ -143,6 +143,47 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
+        /* Process section — gold frieze that lights each step as it passes */
+        .process-gold-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 0;
+            height: 2px;
+            transform: translateY(-50%);
+            background: #e9c349;
+            box-shadow: 0 0 8px rgba(233, 195, 73, 0.55);
+            z-index: 2;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .process-gold-line::after {
+            content: "";
+            position: absolute;
+            right: -3px;
+            top: 50%;
+            width: 7px;
+            height: 7px;
+            transform: translateY(-50%);
+            background: #e9c349;
+            box-shadow: 0 0 9px rgba(233, 195, 73, 0.9);
+        }
+        .process-step > div:first-child {
+            transition: background-color 0.45s ease, color 0.45s ease,
+                        box-shadow 0.45s ease;
+        }
+        .process-step h6 {
+            transition: color 0.45s ease;
+        }
+        .process-step.step-lit > div:first-child {
+            background-color: #e9c349;
+            color: #241a00;
+            box-shadow: 0 0 14px rgba(233, 195, 73, 0.45);
+        }
+        .process-step.step-lit h6 {
+            color: #e9c349;
+        }
     </style>
 </head>
 <body class="font-body-md blueprint-grid">
@@ -395,29 +436,29 @@
 </div>
 </div>
 <div class="relative">
-<div class="hidden md:block absolute top-1/2 left-0 w-full h-px bg-architectural-gray -z-10"></div>
+<div class="hidden md:block absolute top-1/2 left-0 w-full h-px bg-architectural-gray -z-10" data-tl-line="process-h"></div>
 <div class="grid grid-cols-1 md:grid-cols-5 gap-12">
-<div class="scroll-reveal text-center md:text-left">
+<div class="scroll-reveal text-center md:text-left process-step">
 <div class="w-12 h-12 bg-primary text-on-primary flex items-center justify-center font-bold mb-8 mx-auto md:mx-0">1</div>
 <h6 class="font-headline-md text-headline-md text-primary mb-4 uppercase">Audit</h6>
 <p class="text-on-surface-variant font-label-technical text-label-sm">ANALYSE DATA &amp; ASSETS</p>
 </div>
-<div class="scroll-reveal text-center md:text-left">
+<div class="scroll-reveal text-center md:text-left process-step">
 <div class="w-12 h-12 bg-primary text-on-primary flex items-center justify-center font-bold mb-8 mx-auto md:mx-0">2</div>
 <h6 class="font-headline-md text-headline-md text-primary mb-4 uppercase">Écriture</h6>
 <p class="text-on-surface-variant font-label-technical text-label-sm">SCÉNARISATION STRATÉGIQUE</p>
 </div>
-<div class="scroll-reveal text-center md:text-left">
+<div class="scroll-reveal text-center md:text-left process-step">
 <div class="w-12 h-12 bg-primary text-on-primary flex items-center justify-center font-bold mb-8 mx-auto md:mx-0">3</div>
 <h6 class="font-headline-md text-headline-md text-primary mb-4 uppercase">Tournage</h6>
 <p class="text-on-surface-variant font-label-technical text-label-sm">CAPTATION HAUTE PRÉCISION</p>
 </div>
-<div class="scroll-reveal text-center md:text-left">
+<div class="scroll-reveal text-center md:text-left process-step">
 <div class="w-12 h-12 bg-primary text-on-primary flex items-center justify-center font-bold mb-8 mx-auto md:mx-0">4</div>
 <h6 class="font-headline-md text-headline-md text-primary mb-4 uppercase">Diffusion</h6>
 <p class="text-on-surface-variant font-label-technical text-label-sm">ALGORITHME &amp; SCALING</p>
 </div>
-<div class="scroll-reveal text-center md:text-left">
+<div class="scroll-reveal text-center md:text-left process-step">
 <div class="w-12 h-12 bg-secondary text-on-secondary flex items-center justify-center font-bold mb-8 mx-auto md:mx-0">5</div>
 <h6 class="font-headline-md text-headline-md text-primary mb-4 uppercase">Optimisation</h6>
 <p class="text-on-surface-variant font-label-technical text-label-sm">ITÉRATION &amp; RÉSULTATS</p>
@@ -619,5 +660,68 @@
                 nav.classList.remove('py-4');
             }
         });
+
+        // Process section — a gold frieze that draws along the existing grey
+        // line as the section scrolls into view, lighting each step gold once
+        // the frieze head reaches it.
+        (function () {
+            const base = document.querySelector('[data-tl-line="process-h"]');
+            if (!base) return;
+            const wrap = base.parentElement;
+            const steps = Array.prototype.slice.call(
+                wrap.querySelectorAll('.process-step'));
+            if (!steps.length) return;
+
+            const gold = document.createElement('div');
+            gold.className = 'process-gold-line';
+            gold.style.opacity = '0';
+            wrap.appendChild(gold);
+
+            let ticking = false;
+
+            function update() {
+                // disabled on narrow viewports — the grey guide line is md-only
+                if (getComputedStyle(base).display === 'none') {
+                    gold.style.opacity = '0';
+                    gold.style.width = '0';
+                    steps.forEach(s => s.classList.remove('step-lit'));
+                    return;
+                }
+                const vh = window.innerHeight;
+                const rect = wrap.getBoundingClientRect();
+                const startAt = vh * 0.78;   // begins as the row enters view
+                const endAt = vh * 0.30;     // fully drawn near viewport centre
+                let p = (startAt - rect.top) / (startAt - endAt);
+                p = Math.max(0, Math.min(1, p));
+
+                gold.style.opacity = p > 0 ? '1' : '0';
+                gold.style.width = (p * 100) + '%';
+
+                const headPx = p * rect.width;   // frieze leading edge, in px
+                for (let i = 0; i < steps.length; i++) {
+                    const numBox = steps[i].querySelector('div');
+                    let trigger;
+                    if (numBox) {
+                        const nb = numBox.getBoundingClientRect();
+                        trigger = nb.left + nb.width / 2 - rect.left;
+                    } else {
+                        trigger = (i + 0.5) / steps.length * rect.width;
+                    }
+                    steps[i].classList.toggle(
+                        'step-lit', p > 0 && headPx >= trigger);
+                }
+            }
+
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(() => { update(); ticking = false; });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            window.addEventListener('load', update);
+            update();
+        })();
     </script>
 </body></html>
