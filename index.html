@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KINGDOM ADS // Strategic Acquisition Architects</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "primary-fixed": "#e2e2e2",
+                        "on-primary-container": "#636565",
+                        "primary-container": "#e2e2e2",
+                        "secondary-fixed-dim": "#e9c349",
+                        "primary-fixed-dim": "#c6c6c7",
+                        "tertiary": "#ffffff",
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#131313",
+                        "inverse-on-surface": "#303030",
+                        "error-container": "#93000a",
+                        "on-error": "#690005",
+                        "surface-variant": "#353535",
+                        "surface": "#131313",
+                        "muted-gold": "#735C00",
+                        "secondary": "#e9c349",
+                        "outline-variant": "#444748",
+                        "surface-bright": "#393939",
+                        "surface-container-high": "#2a2a2a",
+                        "on-primary-fixed-variant": "#454747",
+                        "error": "#ffb4ab",
+                        "surface-container": "#1f1f1f",
+                        "secondary-container": "#af8d11",
+                        "on-primary-fixed": "#1a1c1c",
+                        "on-secondary-fixed": "#241a00",
+                        "primary": "#ffffff",
+                        "inverse-surface": "#e2e2e2",
+                        "tertiary-fixed": "#e2e2e2",
+                        "architectural-gray": "#1A1A1A",
+                        "on-primary": "#2f3131",
+                        "inverse-primary": "#5d5f5f",
+                        "deep-gold": "#C5A028",
+                        "on-secondary-container": "#342800",
+                        "tertiary-container": "#e2e2e2",
+                        "surface-container-low": "#1b1b1b",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "secondary-fixed": "#ffe088",
+                        "background": "#000000",
+                        "on-background": "#e2e2e2",
+                        "surface-tint": "#c6c6c7",
+                        "on-secondary": "#3c2f00",
+                        "surface-container-highest": "#353535",
+                        "on-secondary-fixed-variant": "#574500",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-surface": "#e2e2e2",
+                        "on-surface-variant": "#c4c7c8",
+                        "on-tertiary": "#2f3131",
+                        "outline": "#8e9192",
+                        "on-tertiary-container": "#636565",
+                        "blueprint-line": "rgba(255, 255, 255, 0.05)"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "margin-desktop": "80px",
+                        "grid-line": "1px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Montserrat"],
+                        "headline-xl": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "label-technical": ["JetBrains Mono"],
+                        "body-lg": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "label-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["32px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-xl": ["80px", {"lineHeight": "88px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-technical": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["10px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #e2e2e2;
+            overflow-x: hidden;
+        }
+
+        .blueprint-grid {
+            background-image: linear-gradient(var(--tw-colors-blueprint-line) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--tw-colors-blueprint-line) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gold-glow:hover {
+            box-shadow: 0px 0px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .line-draw {
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+
+        .line-draw.visible {
+            width: 100%;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body-md blueprint-grid">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-6 max-w-none mx-auto">
+<div class="font-headline-md text-headline-md tracking-tighter text-primary">KINGDOM ADS</div>
+<div class="hidden md:flex gap-12">
+<a class="font-label-technical text-label-technical text-secondary border-b border-secondary pb-1" href="#">HISTOIRE</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant hover:text-primary transition-colors" href="#">EXPÉRIENCE</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant hover:text-primary transition-colors" href="#">MÉTHODE</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant hover:text-primary transition-colors" href="#">DISTINCTION</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant hover:text-primary transition-colors" href="#">PROCESSUS</a>
+</div>
+<button class="bg-primary text-on-primary px-8 py-3 font-label-technical text-label-technical uppercase tracking-widest hover:bg-secondary transition-all active:scale-95 duration-200">
+            PARLONS-EN
+        </button>
+</nav>
+<!-- Hero Section -->
+<header class="relative min-h-screen flex flex-col justify-center items-start px-margin-mobile md:px-margin-desktop pt-32 overflow-hidden">
+<div class="absolute inset-0 pointer-events-none">
+<div class="w-full h-full bg-gradient-to-br from-architectural-gray/30 to-transparent"></div>
+<div id="hero-paths" class="absolute inset-0 overflow-hidden"></div>
+</div>
+<div class="z-10 max-w-5xl" style="opacity:0.85">
+<div class="font-label-technical text-label-technical text-secondary mb-8 scroll-reveal" id="hero-label">
+                [ 01 // 16 ] STRATEGIC ACQUISITION ARCHITECTS
+            </div>
+<h1 class="font-headline-lg-mobile md:font-headline-xl md:text-headline-xl text-primary leading-tight scroll-reveal" id="hero-title">
+                La publicité en ligne est devenue <span class="italic">plate.</span> <br/>Restent ceux qui filment des histoires.
+            </h1>
+<div class="mt-12 flex flex-col md:flex-row gap-8 items-start scroll-reveal" id="hero-cta">
+<button class="bg-primary text-on-primary px-12 py-5 font-label-technical text-label-technical uppercase tracking-widest gold-glow transition-all">
+                    DÉCOUVRIR LE MANIFESTE
+                </button>
+<div class="border-l border-outline-variant pl-6 py-2">
+<p class="font-label-technical text-label-technical text-on-surface-variant">VISION 2026 FOCUS</p>
+<p class="font-label-technical text-label-technical text-secondary">READY FOR IMPACT</p>
+</div>
+</div>
+</div>
+<div class="absolute bottom-12 left-margin-desktop hidden md:block">
+<span class="material-symbols-outlined text-secondary animate-bounce">arrow_downward</span>
+</div>
+</header>
+<!-- Section: Notre Histoire -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop border-y border-architectural-gray relative overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-5 scroll-reveal">
+<div class="font-label-technical text-label-technical text-secondary mb-4">03 // 16</div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-8">Deux frères. Deux regards.<br/>Une même conviction.</h2>
+<div class="space-y-6 text-on-surface-variant font-body-lg text-body-lg max-w-lg">
+<p>Faux jumeaux, vrais associés. Experts en pub Meta, copywriting, stratégie créative.</p>
+<p class="text-secondary font-semibold">Deux cerveaux pour chaque projet client. Toujours.</p>
+</div>
+</div>
+<div class="md:col-span-7 flex flex-col md:flex-row gap-4 items-end scroll-reveal">
+<div class="relative group overflow-hidden flex-1 border border-architectural-gray">
+<img class="w-full h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="A portrait of a male co-founder with a sharp, professional look, styled in high-contrast black and white cinematic lighting. He is wearing a minimalist dark shirt, standing against a deep architectural background with subtle gold grid lines. The image captures a sense of strategic intellect and premium authority, perfectly aligned with the Strategic Acquisition Architects brand identity." src="input/alex-800.webp"/>
+<div class="absolute bottom-8 left-8">
+<div class="text-primary font-headline-md text-headline-md tracking-[1em]">ALEXANDRE</div>
+</div>
+</div>
+<div class="relative group overflow-hidden flex-1 border border-architectural-gray">
+<img class="w-full h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="A portrait of a male co-founder with a focused, analytical expression, captured in high-contrast cinematic black and white lighting. He wears a high-end black garment, positioned against a dark void background with faint architectural outlines. The visual tone is technical and sophisticated, reflecting the agency's data-driven yet creative approach to digital acquisition." src="input/William-ADAMSHA-400x380.webp"/>
+<div class="absolute bottom-8 left-8">
+<div class="text-primary font-headline-md text-headline-md tracking-[1em]">WILLIAM</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Expérience & Stats -->
+<section class="py-32 bg-surface-container-lowest">
+<div class="px-margin-mobile md:px-margin-desktop">
+<div class="flex justify-between items-end mb-16 scroll-reveal">
+<div>
+<div class="font-label-technical text-label-technical text-secondary mb-4">04 // 16</div>
+<h2 class="font-headline-lg text-headline-lg text-primary">LA MESURE DU RÉSULTAT</h2>
+</div>
+<div class="hidden md:block font-label-technical text-label-technical text-on-surface-variant">ENGINEERING PERFORMANCE</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-px bg-architectural-gray border border-architectural-gray">
+<div class="bg-background p-12 flex flex-col items-center justify-center text-center scroll-reveal">
+<div class="font-headline-lg text-headline-lg text-secondary mb-2">11</div>
+<div class="font-label-technical text-label-technical text-on-surface-variant uppercase">ANS DANS LA PUB</div>
+</div>
+<div class="bg-background p-12 flex flex-col items-center justify-center text-center scroll-reveal">
+<div class="font-headline-lg text-headline-lg text-secondary mb-2">+50</div>
+<div class="font-label-technical text-label-technical text-on-surface-variant uppercase">MARQUES ACCOMPAGNÉES</div>
+</div>
+<div class="bg-background p-12 flex flex-col items-center justify-center text-center scroll-reveal">
+<div class="font-headline-lg text-headline-lg text-secondary mb-2">+2M€</div>
+<div class="font-label-technical text-label-technical text-on-surface-variant uppercase">BUDGET PILOTÉ</div>
+</div>
+<div class="bg-background p-12 flex flex-col items-center justify-center text-center scroll-reveal">
+<div class="font-headline-lg text-headline-lg text-secondary mb-2">9</div>
+<div class="font-label-technical text-label-technical text-on-surface-variant uppercase">SECTEURS MAÎTRISÉS</div>
+</div>
+<div class="bg-background p-12 flex flex-col items-center justify-center text-center scroll-reveal">
+<div class="font-headline-lg text-headline-lg text-secondary mb-2">100%</div>
+<div class="font-label-technical text-label-technical text-on-surface-variant uppercase">CAMPAGNES SCÉNARISÉES</div>
+</div>
+</div>
+<div class="mt-20 flex flex-wrap gap-4 justify-center scroll-reveal">
+<div class="px-6 py-2 border border-architectural-gray font-label-technical text-label-technical text-on-surface-variant hover:text-secondary hover:border-secondary transition-all">[B2B]</div>
+<div class="px-6 py-2 border border-architectural-gray font-label-technical text-label-technical text-on-surface-variant hover:text-secondary hover:border-secondary transition-all">[IMMOBILIER]</div>
+<div class="px-6 py-2 border border-architectural-gray font-label-technical text-label-technical text-on-surface-variant hover:text-secondary hover:border-secondary transition-all">[FORMATION]</div>
+<div class="px-6 py-2 border border-architectural-gray font-label-technical text-label-technical text-on-surface-variant hover:text-secondary hover:border-secondary transition-all">[JOAILLERIE]</div>
+<div class="px-6 py-2 border border-architectural-gray font-label-technical text-label-technical text-on-surface-variant hover:text-secondary hover:border-secondary transition-all">[SAAS]</div>
+<div class="px-6 py-2 border border-architectural-gray font-label-technical text-label-technical text-on-surface-variant hover:text-secondary hover:border-secondary transition-all">[RETAIL]</div>
+</div>
+</div>
+</section>
+<!-- Section: The Problem -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1/2 h-full border-r border-architectural-gray pointer-events-none"></div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+<div class="md:col-span-5 scroll-reveal">
+<div class="font-label-technical text-label-technical text-secondary mb-4">05 // 16</div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-8 uppercase leading-tight">Le problème n'est pas le canal.<br/><span class="text-secondary">C'est que vous ne savez pas quoi raconter.</span></h2>
+</div>
+<div class="md:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-px bg-architectural-gray border border-architectural-gray scroll-reveal">
+<div class="bg-black p-8 group hover:bg-surface-container transition-colors duration-500">
+<div class="font-label-technical text-label-sm text-secondary mb-4">01 // PAIN</div>
+<h3 class="text-primary font-headline-md text-headline-md mb-2">Réseaux sociaux</h3>
+<p class="text-on-surface-variant font-body-md text-body-md">Une présence fantôme. Des posts sans aucune réaction, ni engagement, ni conversion.</p>
+</div>
+<div class="bg-black p-8 group hover:bg-surface-container transition-colors duration-500">
+<div class="font-label-technical text-label-sm text-secondary mb-4">02 // PAIN</div>
+<h3 class="text-primary font-headline-md text-headline-md mb-2">LinkedIn</h3>
+<p class="text-on-surface-variant font-body-md text-body-md">Une réponse sur 100 prospections. Un bruit de fond qui n'atteint jamais sa cible.</p>
+</div>
+<div class="bg-black p-8 group hover:bg-surface-container transition-colors duration-500">
+<div class="font-label-technical text-label-sm text-secondary mb-4">03 // PAIN</div>
+<h3 class="text-primary font-headline-md text-headline-md mb-2">Mailing</h3>
+<p class="text-on-surface-variant font-body-md text-body-md">Direction la corbeille. Vos séquences sont perçues comme du spam pur et simple.</p>
+</div>
+<div class="bg-black p-8 group hover:bg-surface-container transition-colors duration-500">
+<div class="font-label-technical text-label-sm text-secondary mb-4">04 // PAIN</div>
+<h3 class="text-primary font-headline-md text-headline-md mb-2">Studio vidéo</h3>
+<p class="text-on-surface-variant font-body-md text-body-md">Vous avez le matériel, mais pas l'histoire. Une belle image vide de sens.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Agency vs Video Studio (Distinction) -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop bg-surface-container-low border-y border-architectural-gray">
+<div class="max-w-4xl mx-auto scroll-reveal text-center mb-20">
+<div class="font-label-technical text-label-technical text-secondary mb-4">07 // 16</div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">DISTINCTION STRATÉGIQUE</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg italic">"Une agence vidéo n'est pas une agence de publicité."</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 scroll-reveal">
+<div class="border border-architectural-gray p-12 bg-black relative">
+<div class="absolute top-0 right-0 p-4 font-label-technical text-label-sm text-error opacity-50 uppercase tracking-widest">Incomplet</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-8 border-b border-architectural-gray pb-4">STUDIO VIDÉO CLASSIQUE</h3>
+<ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-error">close</span> Focus sur l'esthétique pure</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-error">close</span> Absence de pilotage Ads</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-error">close</span> Pas de back-office technique</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-error">close</span> KPIs ignorés ou non mesurés</li>
+</ul>
+</div>
+<div class="border border-secondary p-12 bg-black relative gold-glow">
+<div class="absolute top-0 right-0 p-4 font-label-technical text-label-sm text-secondary uppercase tracking-widest">Kingdom Ads</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-8 border-b border-secondary/30 pb-4">NOTRE ARCHITECTURE</h3>
+<ul class="space-y-4 font-body-md text-body-md text-primary">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary">check_circle</span> Scénarisation basée sur la donnée</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary">check_circle</span> Pilotage quotidien des budgets</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary">check_circle</span> Tracking &amp; Attribution précise</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary">check_circle</span> Optimisation continue (Creative Testing)</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Section: Method & Scene -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop relative">
+<div class="flex flex-col md:flex-row justify-between items-start mb-24">
+<div class="max-w-2xl scroll-reveal">
+<div class="font-label-technical text-label-technical text-secondary mb-4">10 // 16</div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-8 uppercase">Anatomie d'une scène</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg">Nos publicités sont des mini-court-métrages. Nous ne vendons pas des produits, nous résolvons des conflits par la narration.</p>
+</div>
+<div class="mt-8 md:mt-0 scroll-reveal">
+<div class="font-label-technical text-label-sm text-secondary border border-secondary px-6 py-2 uppercase">L'angle pèse 80% du résultat</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-architectural-gray border border-architectural-gray scroll-reveal">
+<div class="bg-black p-10 hover:bg-surface-container transition-all">
+<div class="font-headline-lg text-headline-lg text-secondary/20 mb-6 font-bold">01</div>
+<h4 class="font-headline-md text-headline-md text-primary mb-4">UNE SCÈNE</h4>
+<p class="text-on-surface-variant">L'immersion immédiate dans un contexte familier ou intriguant.</p>
+</div>
+<div class="bg-black p-10 hover:bg-surface-container transition-all">
+<div class="font-headline-lg text-headline-lg text-secondary/20 mb-6 font-bold">02</div>
+<h4 class="font-headline-md text-headline-md text-primary mb-4">UN NARRATEUR</h4>
+<p class="text-on-surface-variant">Une incarnation forte qui porte la voix de la marque.</p>
+</div>
+<div class="bg-black p-10 hover:bg-surface-container transition-all">
+<div class="font-headline-lg text-headline-lg text-secondary/20 mb-6 font-bold">03</div>
+<h4 class="font-headline-md text-headline-md text-primary mb-4">UN CONFLIT</h4>
+<p class="text-on-surface-variant">Le point de friction qui empêche votre client de dormir.</p>
+</div>
+<div class="bg-black p-10 hover:bg-surface-container transition-all">
+<div class="font-headline-lg text-headline-lg text-secondary/20 mb-6 font-bold">04</div>
+<h4 class="font-headline-md text-headline-md text-primary mb-4">RÉSOLUTION</h4>
+<p class="text-on-surface-variant">Votre solution comme seule issue logique et satisfaisante.</p>
+</div>
+</div>
+</section>
+<!-- Section: Gift (6 Angles) -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest">
+<div class="text-center mb-24 scroll-reveal">
+<div class="font-label-technical text-label-technical text-secondary mb-4">11 // 16</div>
+<h2 class="font-headline-lg text-headline-lg text-primary uppercase">6 Angles Signature à tester</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="border border-architectural-gray p-8 scroll-reveal hover:border-secondary/50 transition-colors">
+<h5 class="font-headline-md text-headline-md text-secondary mb-4 uppercase">Le Fondateur</h5>
+<p class="text-on-surface-variant">L'histoire brute du "Pourquoi" derrière la création de l'entreprise.</p>
+</div>
+<div class="border border-architectural-gray p-8 scroll-reveal hover:border-secondary/50 transition-colors">
+<h5 class="font-headline-md text-headline-md text-secondary mb-4 uppercase">Le Client Transformé</h5>
+<p class="text-on-surface-variant">L'arc narratif complet de la douleur à la délivrance totale.</p>
+</div>
+<div class="border border-architectural-gray p-8 scroll-reveal hover:border-secondary/50 transition-colors">
+<h5 class="font-headline-md text-headline-md text-secondary mb-4 uppercase">L'Observateur</h5>
+<p class="text-on-surface-variant">Un regard extérieur, analytique et détaché sur votre marché.</p>
+</div>
+<div class="border border-architectural-gray p-8 scroll-reveal hover:border-secondary/50 transition-colors">
+<h5 class="font-headline-md text-headline-md text-secondary mb-4 uppercase">L'Antagoniste</h5>
+<p class="text-on-surface-variant">Dénoncer le statu quo et les pratiques obsolètes de votre industrie.</p>
+</div>
+<div class="border border-architectural-gray p-8 scroll-reveal hover:border-secondary/50 transition-colors">
+<h5 class="font-headline-md text-headline-md text-secondary mb-4 uppercase">Le Témoignage à rebours</h5>
+<p class="text-on-surface-variant">Commencer par le succès final et remonter jusqu'à la cause.</p>
+</div>
+<div class="border border-architectural-gray p-8 scroll-reveal hover:border-secondary/50 transition-colors">
+<h5 class="font-headline-md text-headline-md text-secondary mb-4 uppercase">Le Manifeste</h5>
+<p class="text-on-surface-variant">Affirmer vos valeurs radicales pour attirer ceux qui vous ressemblent.</p>
+</div>
+</div>
+</section>
+<!-- Section: Process -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop border-t border-architectural-gray">
+<div class="flex flex-col md:flex-row justify-between items-end mb-24 scroll-reveal">
+<div>
+<div class="font-label-technical text-label-technical text-secondary mb-4">13 // 16</div>
+<h2 class="font-headline-lg text-headline-lg text-primary uppercase">Le processus architectural</h2>
+</div>
+</div>
+<div class="relative">
+<div class="hidden md:block absolute top-1/2 left-0 w-full h-px bg-architectural-gray -z-10"></div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-12">
+<div class="scroll-reveal text-center md:text-left">
+<div class="w-12 h-12 bg-primary text-on-primary flex items-center justify-center font-bold mb-8 mx-auto md:mx-0">1</div>
+<h6 class="font-headline-md text-headline-md text-primary mb-4 uppercase">Audit</h6>
+<p class="text-on-surface-variant font-label-technical text-label-sm">ANALYSE DATA &amp; ASSETS</p>
+</div>
+<div class="scroll-reveal text-center md:text-left">
+<div class="w-12 h-12 bg-primary text-on-primary flex items-center justify-center font-bold mb-8 mx-auto md:mx-0">2</div>
+<h6 class="font-headline-md text-headline-md text-primary mb-4 uppercase">Écriture</h6>
+<p class="text-on-surface-variant font-label-technical text-label-sm">SCÉNARISATION STRATÉGIQUE</p>
+</div>
+<div class="scroll-reveal text-center md:text-left">
+<div class="w-12 h-12 bg-primary text-on-primary flex items-center justify-center font-bold mb-8 mx-auto md:mx-0">3</div>
+<h6 class="font-headline-md text-headline-md text-primary mb-4 uppercase">Tournage</h6>
+<p class="text-on-surface-variant font-label-technical text-label-sm">CAPTATION HAUTE PRÉCISION</p>
+</div>
+<div class="scroll-reveal text-center md:text-left">
+<div class="w-12 h-12 bg-primary text-on-primary flex items-center justify-center font-bold mb-8 mx-auto md:mx-0">4</div>
+<h6 class="font-headline-md text-headline-md text-primary mb-4 uppercase">Diffusion</h6>
+<p class="text-on-surface-variant font-label-technical text-label-sm">ALGORITHME &amp; SCALING</p>
+</div>
+<div class="scroll-reveal text-center md:text-left">
+<div class="w-12 h-12 bg-secondary text-on-secondary flex items-center justify-center font-bold mb-8 mx-auto md:mx-0">5</div>
+<h6 class="font-headline-md text-headline-md text-primary mb-4 uppercase">Optimisation</h6>
+<p class="text-on-surface-variant font-label-technical text-label-sm">ITÉRATION &amp; RÉSULTATS</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: References (Logos/Text) -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop border-y border-architectural-gray overflow-hidden">
+<div class="font-label-technical text-label-sm text-center text-on-surface-variant mb-12 uppercase tracking-widest opacity-50">Ils nous font confiance</div>
+<div class="flex flex-wrap justify-center items-center gap-x-20 gap-y-12 opacity-80 scroll-reveal">
+<span class="font-headline-md text-headline-md text-primary tracking-tighter">RT CONNECTING</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter">MEILLEUR TAUX</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter">ANDREW APP</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter">WAKE UP</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter">CAMPER X</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter">JOAILLERIE O'CO</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter">W2C</span>
+</div>
+</section>
+<!-- Final CTA Section -->
+<section class="py-48 px-margin-mobile md:px-margin-desktop relative overflow-hidden text-center bg-black">
+<div class="absolute inset-0 blueprint-grid opacity-10 pointer-events-none"></div>
+<div class="relative z-10 max-w-4xl mx-auto scroll-reveal">
+<div class="font-label-technical text-label-technical text-secondary mb-8 uppercase tracking-widest">16 // 16 PARLONS CHIFFRES</div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-primary mb-12 uppercase">VOTRE ARCHITECTURE D'ACQUISITION COMMENCE ICI.</h2>
+<div class="flex flex-col md:flex-row gap-6 justify-center items-center mb-16">
+<button class="w-full md:w-auto bg-secondary text-on-secondary px-16 py-6 font-headline-md text-headline-md uppercase tracking-widest gold-glow transition-all active:scale-95">
+                    PRENDRE RDV
+                </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-center border-t border-architectural-gray pt-12">
+<div>
+<p class="font-label-technical text-label-sm text-on-surface-variant mb-2">FOUNDER // STRATEGY</p>
+<a class="text-primary hover:text-secondary transition-colors" href="mailto:alexandre@kingdomads.fr">alexandre@kingdomads.fr</a>
+</div>
+<div>
+<p class="font-label-technical text-label-sm text-on-surface-variant mb-2">FOUNDER // CREATIVE</p>
+<a class="text-primary hover:text-secondary transition-colors" href="mailto:william@kingdomads.fr">william@kingdomads.fr</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full border-t border-outline-variant bg-surface-container-lowest">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-12 w-full">
+<div class="font-headline-md text-headline-md text-primary mb-6 md:mb-0">KINGDOM ADS</div>
+<div class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant text-center md:text-left">
+                © 2024 KINGDOM ADS // STRATEGIC ACQUISITION ARCHITECTS
+            </div>
+<div class="flex gap-8 mt-6 md:mt-0">
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-secondary transition-opacity" href="#">MENTIONS LÉGALES</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-secondary transition-opacity" href="#">POLITIQUE DE CONFIDENTIALITÉ</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-secondary transition-opacity" href="#">CALENDLY</a>
+</div>
+</div>
+</footer>
+<script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optional: trigger line drawing if it has the class
+                    const line = entry.target.querySelector('.line-draw');
+                    if (line) line.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Floating background paths — kokonutd/background-paths
+        // Replicates the framer-motion animate{} exactly. Constant base speed;
+        // scrolling the hero blends a subset of paths toward the site gold (#e9c349).
+        (function () {
+            const el = document.getElementById('hero-paths');
+            if (!el) return;
+
+            // Exact path formula from the source component (FloatingPaths)
+            const pathD = (i, p) =>
+                `M-${380 - i*5*p} -${189 + i*6}` +
+                `C-${380 - i*5*p} -${189 + i*6} -${312 - i*5*p} ${216 - i*6} ${152 - i*5*p} ${343 - i*6}` +
+                `C${616 - i*5*p} ${470 - i*6} ${684 - i*5*p} ${875 - i*6} ${684 - i*5*p} ${875 - i*6}`;
+
+            const NS = 'http://www.w3.org/2000/svg';
+            const svg = document.createElementNS(NS, 'svg');
+            svg.setAttribute('viewBox', '0 0 696 316');
+            svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
+            svg.setAttribute('fill', 'none');
+            svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%';
+
+            const paths = [];
+            for (const p of [1, -1]) {
+                for (let i = 0; i < 36; i++) {
+                    const pe = document.createElementNS(NS, 'path');
+                    pe.setAttribute('d', pathD(i, p));
+                    pe.setAttribute('stroke', 'white');
+                    const baseW  = 0.3 + i * 0.013;
+                    const baseOp = 0.06 + i * 0.016;
+                    pe.setAttribute('stroke-width', baseW.toFixed(2));
+                    pe.setAttribute('stroke-opacity', baseOp.toFixed(3));
+                    pe.setAttribute('fill', 'none');
+                    pe.style.visibility = 'hidden';
+                    svg.appendChild(pe);
+                    paths.push({
+                        pe,
+                        len: 0,
+                        baseW: baseW,
+                        baseOp: baseOp,
+                        dur: 42 + ((i * 6.4811) % 22),        // 42–64s — slow idle drift
+                        phase: (i * 0.2741 + (p < 0 ? 0.5 : 0)) % 1,
+                        // every 3rd path can turn gold; the rest stay white.
+                        // goldAt = scroll point (0–1) where it starts blending; -1 = never.
+                        goldAt: (i % 3 === 2) ? (i / 36) * 0.8 : -1,
+                        goldMix: -1                           // cached white→gold blend
+                    });
+                }
+            }
+
+            el.innerHTML = '';
+            el.appendChild(svg);
+
+            // Measure path lengths once layout is ready, then start the loop
+            requestAnimationFrame(() => {
+                for (const o of paths) {
+                    o.len = o.pe.getTotalLength();
+                    o.pe.style.visibility = '';
+                }
+
+                // Scroll progress across the hero: 0 at top → 1 after one viewport
+                let scrollTarget = 0, scrollSmooth = 0;
+                const updateScroll = () => {
+                    scrollTarget = Math.min(window.scrollY / window.innerHeight, 1);
+                };
+                window.addEventListener('scroll', updateScroll, { passive: true });
+                updateScroll();
+                scrollSmooth = scrollTarget;
+
+                const TAU = Math.PI * 2;
+                // Smooth 0→1→0 curve — value + slope match at the cycle wrap, so no snap
+                const wave = c => (1 - Math.cos(c * TAU)) / 2;
+
+                function frame(t) {
+                    const time = t / 1000;
+                    // ease the scroll value so fast scrolls never snap the paths
+                    scrollSmooth += (scrollTarget - scrollSmooth) * 0.08;
+
+                    for (let k = 0; k < paths.length; k++) {
+                        const o = paths[k], L = o.len;
+                        // constant base speed — time drift only, no scroll acceleration
+                        const cycle = (time / o.dur + o.phase) % 1;
+                        const w = wave(cycle);
+                        const pathLength = 0.3 + 0.7 * w;   // 0.3  → 1    → 0.3
+                        const pathOffset = w;               // 0    → 1    → 0
+                        o.pe.setAttribute('stroke-dasharray', (pathLength * L).toFixed(1) + ' ' + L.toFixed(1));
+                        o.pe.setAttribute('stroke-dashoffset', (-pathOffset * L).toFixed(1));
+
+                        let opacity = 0.22 + 0.26 * w;      // faint white breathing
+                        // Gold-on-scroll: goldable paths light up in #e9c349 as the hero scrolls —
+                        // they go saturated gold, thicker and far more opaque so they clearly stand out.
+                        if (o.goldAt >= 0) {
+                            const mix = Math.max(0, Math.min(1, (scrollSmooth - o.goldAt) / 0.12));
+                            if (mix !== o.goldMix) {
+                                o.goldMix = mix;
+                                const r = Math.round(255 - 22  * mix); // 255 → 233
+                                const g = Math.round(255 - 60  * mix); // 255 → 195
+                                const b = Math.round(255 - 182 * mix); // 255 →  73
+                                o.pe.setAttribute('stroke', 'rgb(' + r + ',' + g + ',' + b + ')');
+                                o.pe.setAttribute('stroke-width', (o.baseW + 1.6 * mix).toFixed(2));
+                                o.pe.setAttribute('stroke-opacity', (o.baseOp + (0.95 - o.baseOp) * mix).toFixed(3));
+                            }
+                            // lift the breathing opacity so lit gold lines stay clearly visible
+                            opacity = opacity * (1 - o.goldMix) + (0.65 + 0.35 * w) * o.goldMix;
+                        }
+                        o.pe.style.opacity = opacity.toFixed(3);
+                    }
+                    requestAnimationFrame(frame);
+                }
+                requestAnimationFrame(frame);
+            });
+        })();
+
+        // Sticky Navbar subtle effect on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-6');
+            } else {
+                nav.classList.add('py-6');
+                nav.classList.remove('py-4');
+            }
+        });
+    </script>
+</body></html>
