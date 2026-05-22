@@ -184,23 +184,115 @@
         .process-step.step-lit h6 {
             color: #e9c349;
         }
+
+        /* Floating header (header-2 port) — KINGDOM ADS architectural theme */
+        #site-header {
+            transition: max-width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                        top 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #header-shell {
+            border-color: transparent;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            transition: background-color 0.3s ease-out, border-color 0.3s ease-out,
+                        box-shadow 0.3s ease-out, backdrop-filter 0.3s ease-out,
+                        -webkit-backdrop-filter 0.3s ease-out;
+        }
+        #header-nav {
+            transition: height 0.3s ease-out, padding 0.3s ease-out;
+        }
+        #site-header.header-scrolled #header-shell {
+            background-color: rgba(0, 0, 0, 0.85);
+            border-color: rgba(68, 71, 72, 0.6);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        #site-header.menu-open #header-shell {
+            background-color: rgba(0, 0, 0, 0.96);
+        }
+        @media (min-width: 768px) {
+            #site-header.header-scrolled {
+                top: 1rem;
+                max-width: 56rem;
+            }
+            #site-header.header-scrolled #header-nav {
+                height: 3rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+        }
+
+        /* Animated hamburger ⇄ close toggle (ported from MenuToggleIcon) */
+        .menu-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .menu-icon .morph-path {
+            stroke-dasharray: 12 63;
+            transition: stroke-dasharray 0.3s ease-in-out,
+                        stroke-dashoffset 0.3s ease-in-out;
+        }
+        #site-header.menu-open .menu-icon {
+            transform: rotate(-45deg);
+        }
+        #site-header.menu-open .menu-icon .morph-path {
+            stroke-dasharray: 20 300;
+            stroke-dashoffset: -32.42px;
+        }
+
+        /* Mobile overlay menu */
+        #mobile-menu {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(-0.5rem);
+            transition: opacity 0.28s ease-out, transform 0.28s ease-out,
+                        visibility 0.28s ease-out;
+        }
+        #site-header.menu-open #mobile-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="font-body-md blueprint-grid">
-<!-- Top Navigation Bar -->
-<nav class="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-6 max-w-none mx-auto">
-<div class="font-headline-md text-headline-md tracking-tighter text-primary">KINGDOM ADS</div>
-<div class="hidden md:flex gap-12">
+<!-- Top Navigation Bar — floating header (header-2 style) -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 mx-auto w-full max-w-5xl">
+<div id="header-shell" class="w-full border-b border-transparent md:border">
+<nav id="header-nav" class="flex h-16 w-full items-center justify-between px-4 md:h-14 md:px-6">
+<a class="font-headline-md text-headline-md tracking-tighter text-primary" href="#">KINGDOM ADS</a>
+<div class="hidden md:flex items-center gap-6">
 <a class="font-label-technical text-label-technical text-secondary border-b border-secondary pb-1" href="#">HISTOIRE</a>
 <a class="font-label-technical text-label-technical text-on-surface-variant hover:text-primary transition-colors" href="#">EXPÉRIENCE</a>
 <a class="font-label-technical text-label-technical text-on-surface-variant hover:text-primary transition-colors" href="#">MÉTHODE</a>
 <a class="font-label-technical text-label-technical text-on-surface-variant hover:text-primary transition-colors" href="#">DISTINCTION</a>
 <a class="font-label-technical text-label-technical text-on-surface-variant hover:text-primary transition-colors" href="#">PROCESSUS</a>
+<button class="bg-primary text-on-primary px-6 py-2.5 font-label-technical text-label-technical uppercase tracking-widest hover:bg-secondary transition-all active:scale-95 duration-200">PARLONS-EN</button>
 </div>
-<button class="bg-primary text-on-primary px-8 py-3 font-label-technical text-label-technical uppercase tracking-widest hover:bg-secondary transition-all active:scale-95 duration-200">
-            PARLONS-EN
-        </button>
+<button id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" class="md:hidden flex items-center justify-center w-11 h-11 border border-outline-variant text-primary hover:border-secondary hover:text-secondary transition-colors active:scale-95">
+<svg class="menu-icon w-5 h-5" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<path class="morph-path" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+<path d="M7 16 27 16"></path>
+</svg>
+</button>
 </nav>
+</div>
+<!-- Mobile overlay menu -->
+<div id="mobile-menu" class="fixed top-16 right-0 bottom-0 left-0 z-40 flex flex-col overflow-y-auto bg-background/95 backdrop-blur-lg border-t border-outline-variant md:hidden">
+<div class="flex min-h-full w-full flex-col justify-between gap-y-8 px-margin-mobile py-8">
+<div class="flex flex-col">
+<a class="font-label-technical text-label-technical text-secondary uppercase tracking-widest py-5 border-b border-outline-variant/30" href="#">HISTOIRE</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant uppercase tracking-widest py-5 border-b border-outline-variant/30 hover:text-primary transition-colors" href="#">EXPÉRIENCE</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant uppercase tracking-widest py-5 border-b border-outline-variant/30 hover:text-primary transition-colors" href="#">MÉTHODE</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant uppercase tracking-widest py-5 border-b border-outline-variant/30 hover:text-primary transition-colors" href="#">DISTINCTION</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant uppercase tracking-widest py-5 border-b border-outline-variant/30 hover:text-primary transition-colors" href="#">PROCESSUS</a>
+</div>
+<button class="bg-primary text-on-primary w-full px-8 py-5 font-label-technical text-label-technical uppercase tracking-widest hover:bg-secondary transition-all active:scale-95 duration-200">PARLONS-EN</button>
+</div>
+</div>
+</header>
 <!-- Hero Section -->
 <header class="relative min-h-screen flex flex-col justify-center items-start px-margin-mobile md:px-margin-desktop pt-32 overflow-hidden">
 <div class="absolute inset-0 pointer-events-none">
@@ -256,7 +348,7 @@
 </div>
 </section>
 <!-- Section: Expérience & Stats -->
-<section class="py-32 bg-surface-container-lowest">
+<section class="py-32 bg-black border-y border-architectural-gray">
 <div class="px-margin-mobile md:px-margin-desktop">
 <div class="flex justify-between items-end mb-16 scroll-reveal">
 <div>
@@ -298,7 +390,7 @@
 </div>
 </section>
 <!-- Section: The Problem -->
-<section class="py-32 px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+<section class="py-32 px-margin-mobile md:px-margin-desktop border-y border-architectural-gray relative overflow-hidden">
 <div class="absolute top-0 left-0 w-1/2 h-full border-r border-architectural-gray pointer-events-none"></div>
 <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
 <div class="md:col-span-5 scroll-reveal">
@@ -306,22 +398,22 @@
 <h2 class="font-headline-lg text-headline-lg text-primary mb-8 uppercase leading-tight">Le problème n'est pas le canal.<br/><span class="text-secondary">C'est que vous ne savez pas quoi raconter.</span></h2>
 </div>
 <div class="md:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-px bg-architectural-gray border border-architectural-gray scroll-reveal">
-<div class="bg-black p-8 group hover:bg-surface-container transition-colors duration-500">
+<div class="bg-black p-8 group hover:bg-neutral-900 transition-colors duration-500">
 <div class="font-label-technical text-label-sm text-secondary mb-4">01 // PAIN</div>
 <h3 class="text-primary font-headline-md text-headline-md mb-2">Réseaux sociaux</h3>
 <p class="text-on-surface-variant font-body-md text-body-md">Une présence fantôme. Des posts sans aucune réaction, ni engagement, ni conversion.</p>
 </div>
-<div class="bg-black p-8 group hover:bg-surface-container transition-colors duration-500">
+<div class="bg-black p-8 group hover:bg-neutral-900 transition-colors duration-500">
 <div class="font-label-technical text-label-sm text-secondary mb-4">02 // PAIN</div>
 <h3 class="text-primary font-headline-md text-headline-md mb-2">LinkedIn</h3>
 <p class="text-on-surface-variant font-body-md text-body-md">Une réponse sur 100 prospections. Un bruit de fond qui n'atteint jamais sa cible.</p>
 </div>
-<div class="bg-black p-8 group hover:bg-surface-container transition-colors duration-500">
+<div class="bg-black p-8 group hover:bg-neutral-900 transition-colors duration-500">
 <div class="font-label-technical text-label-sm text-secondary mb-4">03 // PAIN</div>
 <h3 class="text-primary font-headline-md text-headline-md mb-2">Mailing</h3>
 <p class="text-on-surface-variant font-body-md text-body-md">Direction la corbeille. Vos séquences sont perçues comme du spam pur et simple.</p>
 </div>
-<div class="bg-black p-8 group hover:bg-surface-container transition-colors duration-500">
+<div class="bg-black p-8 group hover:bg-neutral-900 transition-colors duration-500">
 <div class="font-label-technical text-label-sm text-secondary mb-4">04 // PAIN</div>
 <h3 class="text-primary font-headline-md text-headline-md mb-2">Studio vidéo</h3>
 <p class="text-on-surface-variant font-body-md text-body-md">Vous avez le matériel, mais pas l'histoire. Une belle image vide de sens.</p>
@@ -330,7 +422,7 @@
 </div>
 </section>
 <!-- Section: Agency vs Video Studio (Distinction) -->
-<section class="py-32 px-margin-mobile md:px-margin-desktop bg-surface-container-low border-y border-architectural-gray">
+<section class="py-32 px-margin-mobile md:px-margin-desktop bg-black border-y border-architectural-gray">
 <div class="max-w-4xl mx-auto scroll-reveal text-center mb-20">
 <div class="font-label-technical text-label-technical text-secondary mb-4">07 // 16</div>
 <h2 class="font-headline-lg text-headline-lg text-primary mb-6">DISTINCTION STRATÉGIQUE</h2>
@@ -360,7 +452,7 @@
 </div>
 </section>
 <!-- Section: Method & Scene -->
-<section class="py-32 px-margin-mobile md:px-margin-desktop relative">
+<section class="py-32 px-margin-mobile md:px-margin-desktop border-y border-architectural-gray relative">
 <div class="flex flex-col md:flex-row justify-between items-start mb-24">
 <div class="max-w-2xl scroll-reveal">
 <div class="font-label-technical text-label-technical text-secondary mb-4">10 // 16</div>
@@ -372,22 +464,22 @@
 </div>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-architectural-gray border border-architectural-gray scroll-reveal">
-<div class="bg-black p-10 hover:bg-surface-container transition-all">
+<div class="bg-black p-10 hover:bg-neutral-900 transition-all">
 <div class="font-headline-lg text-headline-lg text-secondary/20 mb-6 font-bold">01</div>
 <h4 class="font-headline-md text-headline-md text-primary mb-4">UNE SCÈNE</h4>
 <p class="text-on-surface-variant">L'immersion immédiate dans un contexte familier ou intriguant.</p>
 </div>
-<div class="bg-black p-10 hover:bg-surface-container transition-all">
+<div class="bg-black p-10 hover:bg-neutral-900 transition-all">
 <div class="font-headline-lg text-headline-lg text-secondary/20 mb-6 font-bold">02</div>
 <h4 class="font-headline-md text-headline-md text-primary mb-4">UN NARRATEUR</h4>
 <p class="text-on-surface-variant">Une incarnation forte qui porte la voix de la marque.</p>
 </div>
-<div class="bg-black p-10 hover:bg-surface-container transition-all">
+<div class="bg-black p-10 hover:bg-neutral-900 transition-all">
 <div class="font-headline-lg text-headline-lg text-secondary/20 mb-6 font-bold">03</div>
 <h4 class="font-headline-md text-headline-md text-primary mb-4">UN CONFLIT</h4>
 <p class="text-on-surface-variant">Le point de friction qui empêche votre client de dormir.</p>
 </div>
-<div class="bg-black p-10 hover:bg-surface-container transition-all">
+<div class="bg-black p-10 hover:bg-neutral-900 transition-all">
 <div class="font-headline-lg text-headline-lg text-secondary/20 mb-6 font-bold">04</div>
 <h4 class="font-headline-md text-headline-md text-primary mb-4">RÉSOLUTION</h4>
 <p class="text-on-surface-variant">Votre solution comme seule issue logique et satisfaisante.</p>
@@ -395,7 +487,7 @@
 </div>
 </section>
 <!-- Section: Gift (6 Angles) -->
-<section class="py-32 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest">
+<section class="py-32 px-margin-mobile md:px-margin-desktop bg-black border-y border-architectural-gray">
 <div class="text-center mb-24 scroll-reveal">
 <div class="font-label-technical text-label-technical text-secondary mb-4">11 // 16</div>
 <h2 class="font-headline-lg text-headline-lg text-primary uppercase">6 Angles Signature à tester</h2>
@@ -428,7 +520,7 @@
 </div>
 </section>
 <!-- Section: Process -->
-<section class="py-32 px-margin-mobile md:px-margin-desktop border-t border-architectural-gray">
+<section class="py-32 px-margin-mobile md:px-margin-desktop border-y border-architectural-gray">
 <div class="flex flex-col md:flex-row justify-between items-end mb-24 scroll-reveal">
 <div>
 <div class="font-label-technical text-label-technical text-secondary mb-4">13 // 16</div>
@@ -480,7 +572,7 @@
 </div>
 </section>
 <!-- Final CTA Section -->
-<section class="py-48 px-margin-mobile md:px-margin-desktop relative overflow-hidden text-center bg-black">
+<section class="py-48 px-margin-mobile md:px-margin-desktop border-b border-architectural-gray relative overflow-hidden text-center bg-black">
 <div class="absolute inset-0 blueprint-grid opacity-10 pointer-events-none"></div>
 <div class="relative z-10 max-w-4xl mx-auto scroll-reveal">
 <div class="font-label-technical text-label-technical text-secondary mb-8 uppercase tracking-widest">16 // 16 PARLONS CHIFFRES</div>
@@ -503,7 +595,7 @@
 </div>
 </section>
 <!-- Footer -->
-<footer class="w-full border-t border-outline-variant bg-surface-container-lowest">
+<footer class="w-full border-t border-outline-variant bg-black">
 <div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-12 w-full">
 <div class="font-headline-md text-headline-md text-primary mb-6 md:mb-0">KINGDOM ADS</div>
 <div class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant text-center md:text-left">
@@ -649,17 +741,42 @@
             });
         })();
 
-        // Sticky Navbar subtle effect on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('py-4');
-                nav.classList.remove('py-6');
-            } else {
-                nav.classList.add('py-6');
-                nav.classList.remove('py-4');
+        // Floating header — scroll state + mobile menu (header-2 port)
+        (function () {
+            const header = document.getElementById('site-header');
+            const toggle = document.getElementById('menu-toggle');
+            if (!header || !toggle) return;
+
+            let menuOpen = false;
+
+            function applyScrollState() {
+                // header-2: the scrolled pill styling is suppressed while the menu is open
+                const scrolled = window.scrollY > 10 && !menuOpen;
+                header.classList.toggle('header-scrolled', scrolled);
             }
-        });
+
+            function setMenu(open) {
+                menuOpen = open;
+                header.classList.toggle('menu-open', open);
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                document.body.style.overflow = open ? 'hidden' : '';
+                applyScrollState();
+            }
+
+            toggle.addEventListener('click', () => setMenu(!menuOpen));
+
+            // tapping any overlay link / CTA closes the menu
+            document.querySelectorAll('#mobile-menu a, #mobile-menu button')
+                .forEach(el => el.addEventListener('click', () => setMenu(false)));
+
+            // collapse the overlay if the viewport grows to desktop
+            window.addEventListener('resize', () => {
+                if (menuOpen && window.innerWidth >= 768) setMenu(false);
+            });
+
+            window.addEventListener('scroll', applyScrollState, { passive: true });
+            applyScrollState();
+        })();
 
         // Process section — a gold frieze that draws along the existing grey
         // line as the section scrolls into view, lighting each step gold once

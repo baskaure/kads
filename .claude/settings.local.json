@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cmd *)"
+      "Bash(cmd *)",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\maitr\\\\Desktop\\\\sites\\\\kads\\\\kads\\\\index.html\")"
     ]
   }
 }
