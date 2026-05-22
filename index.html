@@ -255,6 +255,70 @@
             pointer-events: auto;
             transform: translateY(0);
         }
+
+        /* Partner marquee — infinite horizontal scroll */
+        .partners-marquee {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .partners-track {
+            display: flex;
+            width: max-content;
+            flex-wrap: nowrap;
+            opacity: 0.8;
+            animation: partners-scroll 45s linear infinite;
+        }
+        .partners-marquee:hover .partners-track {
+            animation-play-state: paused;
+        }
+        .partners-group {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        @keyframes partners-scroll {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .partners-track { animation: none; }
+        }
+
+        /* Progressive blur (port of @ibelick/progressive-blur) — edge fade */
+        .progressive-blur {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            z-index: 10;
+            width: 16%;
+            min-width: 90px;
+            max-width: 240px;
+            pointer-events: none;
+        }
+        .progressive-blur--left  { left: 0; }
+        .progressive-blur--right { right: 0; }
+
+        /* Animated gold gradient — "PRENDRE RDV" CTA background */
+        .cta-gold-gradient {
+            background-color: #e9c349;
+            background-image: linear-gradient(125deg,
+                #c5a028 0%,
+                #e9c349 28%,
+                #ffe088 50%,
+                #e9c349 72%,
+                #c5a028 100%);
+            background-size: 280% 280%;
+            animation: cta-gold-flow 16s ease-in-out infinite;
+        }
+        @keyframes cta-gold-flow {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .cta-gold-gradient { animation: none; }
+        }
     </style>
 </head>
 <body class="font-body-md blueprint-grid">
@@ -558,38 +622,53 @@
 </div>
 </div>
 </section>
-<!-- Section: References (Logos/Text) -->
-<section class="py-32 px-margin-mobile md:px-margin-desktop border-y border-architectural-gray overflow-hidden">
-<div class="font-label-technical text-label-sm text-center text-on-surface-variant mb-12 uppercase tracking-widest opacity-50">Ils nous font confiance</div>
-<div class="flex flex-wrap justify-center items-center gap-x-20 gap-y-12 opacity-80 scroll-reveal">
-<span class="font-headline-md text-headline-md text-primary tracking-tighter">RT CONNECTING</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter">MEILLEUR TAUX</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter">ANDREW APP</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter">WAKE UP</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter">CAMPER X</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter">JOAILLERIE O'CO</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter">W2C</span>
+<!-- Section: References — partner marquee with progressive blur -->
+<section class="py-32 border-y border-architectural-gray overflow-hidden">
+<div class="font-label-technical text-label-sm text-center text-on-surface-variant mb-16 uppercase tracking-widest opacity-50">Ils nous font confiance</div>
+<div class="partners-marquee scroll-reveal">
+<div class="partners-track">
+<div class="partners-group">
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">RT CONNECTING</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">MEILLEUR TAUX</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">ANDREW APP</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">WAKE UP</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">CAMPER X</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">JOAILLERIE O'CO</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">W2C</span>
+</div>
+<div class="partners-group" aria-hidden="true">
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">RT CONNECTING</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">MEILLEUR TAUX</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">ANDREW APP</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">WAKE UP</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">CAMPER X</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">JOAILLERIE O'CO</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">W2C</span>
+</div>
+</div>
+<div id="partners-blur-left" class="progressive-blur progressive-blur--left" aria-hidden="true"></div>
+<div id="partners-blur-right" class="progressive-blur progressive-blur--right" aria-hidden="true"></div>
 </div>
 </section>
 <!-- Final CTA Section -->
-<section class="py-48 px-margin-mobile md:px-margin-desktop border-b border-architectural-gray relative overflow-hidden text-center bg-black">
+<section class="py-48 px-margin-mobile md:px-margin-desktop border-b border-architectural-gray relative overflow-hidden text-center cta-gold-gradient">
 <div class="absolute inset-0 blueprint-grid opacity-10 pointer-events-none"></div>
 <div class="relative z-10 max-w-4xl mx-auto scroll-reveal">
-<div class="font-label-technical text-label-technical text-secondary mb-8 uppercase tracking-widest">16 // 16 PARLONS CHIFFRES</div>
-<h2 class="font-headline-lg-mobile md:font-headline-lg text-primary mb-12 uppercase">VOTRE ARCHITECTURE D'ACQUISITION COMMENCE ICI.</h2>
+<div class="font-label-technical text-label-technical text-on-secondary mb-8 uppercase tracking-widest">16 // 16 PARLONS CHIFFRES</div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-on-secondary mb-12 uppercase">VOTRE ARCHITECTURE D'ACQUISITION COMMENCE ICI.</h2>
 <div class="flex flex-col md:flex-row gap-6 justify-center items-center mb-16">
-<button class="w-full md:w-auto bg-secondary text-on-secondary px-16 py-6 font-headline-md text-headline-md uppercase tracking-widest gold-glow transition-all active:scale-95">
+<button class="w-full md:w-auto bg-background text-primary px-16 py-6 font-headline-md text-headline-md uppercase tracking-widest transition-all active:scale-95 hover:opacity-90">
                     PRENDRE RDV
                 </button>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-center border-t border-architectural-gray pt-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-center border-t border-on-secondary/30 pt-12">
 <div>
-<p class="font-label-technical text-label-sm text-on-surface-variant mb-2">FOUNDER // STRATEGY</p>
-<a class="text-primary hover:text-secondary transition-colors" href="mailto:alexandre@kingdomads.fr">alexandre@kingdomads.fr</a>
+<p class="font-label-technical text-label-sm text-on-secondary/70 mb-2">FOUNDER // STRATEGY</p>
+<a class="text-on-secondary font-medium hover:text-background transition-colors" href="mailto:alexandre@kingdomads.fr">alexandre@kingdomads.fr</a>
 </div>
 <div>
-<p class="font-label-technical text-label-sm text-on-surface-variant mb-2">FOUNDER // CREATIVE</p>
-<a class="text-primary hover:text-secondary transition-colors" href="mailto:william@kingdomads.fr">william@kingdomads.fr</a>
+<p class="font-label-technical text-label-sm text-on-secondary/70 mb-2">FOUNDER // CREATIVE</p>
+<a class="text-on-secondary font-medium hover:text-background transition-colors" href="mailto:william@kingdomads.fr">william@kingdomads.fr</a>
 </div>
 </div>
 </div>
@@ -599,7 +678,7 @@
 <div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-12 w-full">
 <div class="font-headline-md text-headline-md text-primary mb-6 md:mb-0">KINGDOM ADS</div>
 <div class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant text-center md:text-left">
-                © 2024 KINGDOM ADS // STRATEGIC ACQUISITION ARCHITECTS
+                © 2026 KINGDOM ADS // STRATEGIC ACQUISITION ARCHITECTS
             </div>
 <div class="flex gap-8 mt-6 md:mt-0">
 <a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-secondary transition-opacity" href="#">MENTIONS LÉGALES</a>
@@ -839,6 +918,46 @@
             window.addEventListener('resize', onScroll);
             window.addEventListener('load', update);
             update();
+        })();
+
+        // Progressive blur — port of @ibelick/progressive-blur (motion/react).
+        // Stacks N backdrop-filter layers, each masked to a shifting gradient
+        // band, producing a graduated blur that fades the marquee edges.
+        (function () {
+            const GRADIENT_ANGLES = { top: 0, right: 90, bottom: 180, left: 270 };
+
+            function progressiveBlur(target, direction, blurLayers, blurIntensity) {
+                const layers = Math.max(blurLayers, 2);
+                // 1 / blurLayers (not blurLayers + 1) so the final band reaches
+                // 100% — the blur stays flush to the edge with no clear gap.
+                const segmentSize = 1 / blurLayers;
+                const angle = GRADIENT_ANGLES[direction];
+
+                for (let i = 0; i < layers; i++) {
+                    const gradient = 'linear-gradient(' + angle + 'deg, ' + [
+                        'transparent',
+                        'black ' + (i * segmentSize * 100) + '%',
+                        'black ' + ((i + 1) * segmentSize * 100) + '%',
+                        'transparent',
+                    ].join(', ') + ')';
+
+                    const layer = document.createElement('div');
+                    layer.style.position = 'absolute';
+                    layer.style.inset = '0';
+                    layer.style.pointerEvents = 'none';
+                    layer.style.borderRadius = 'inherit';
+                    layer.style.maskImage = gradient;
+                    layer.style.webkitMaskImage = gradient;
+                    layer.style.backdropFilter = 'blur(' + (i * blurIntensity) + 'px)';
+                    layer.style.webkitBackdropFilter = 'blur(' + (i * blurIntensity) + 'px)';
+                    target.appendChild(layer);
+                }
+            }
+
+            const left = document.getElementById('partners-blur-left');
+            const right = document.getElementById('partners-blur-right');
+            if (left) progressiveBlur(left, 'left', 8, 0.5);
+            if (right) progressiveBlur(right, 'right', 8, 0.5);
         })();
     </script>
 </body></html>
