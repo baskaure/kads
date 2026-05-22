@@ -429,6 +429,114 @@
             .expand-sticky { position: relative; }
             .expand-hint { display: none; }
         }
+
+        /* 3D flip cards — port of @aghasisahakyan1/flipping-card */
+        .flip-card {
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            min-height: 440px;
+            transform-style: preserve-3d;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @media (hover: hover) {
+            .flip-card:hover .flip-card-inner {
+                transform: rotateY(180deg);
+            }
+        }
+        .flip-card.is-flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-face {
+            position: absolute;
+            inset: 0;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .flip-card-front { transform: rotateY(0deg); }
+        .flip-card-back  { transform: rotateY(180deg); }
+        .flip-card-content {
+            position: absolute;
+            inset: 0;
+            transform: translateZ(70px) scale(0.93);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .flip-card-inner { transition: none; }
+        }
+
+        /* Story-scroll — stacked full-screen panels (port of @boudjadjasamira/story-scroll).
+           sticky panels stack; each panel's inner swings in from a 30deg tilt. */
+        .story-scroll {
+            position: relative;
+            overflow-x: clip;
+        }
+        .story-panel {
+            position: sticky;
+            top: 0;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .story-panel-inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+            width: 100%;
+            padding: clamp(6rem, 9vw, 9rem) clamp(1.5rem, 5vw, 5rem) clamp(2rem, 5vw, 5rem);
+            transform-origin: bottom left;
+            will-change: transform;
+        }
+        .story-panel-inner--dark { background-color: #000000; color: #c4c7c8; }
+        .story-panel-inner--gold { background-color: #e9c349; color: #3c2f00; }
+        .story-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+            font-weight: 500;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+        .story-panel-inner--dark .story-label { color: #e9c349; }
+        .story-headline {
+            font-family: Montserrat, sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            line-height: 0.85;
+            font-size: clamp(3rem, 9vw, 9rem);
+        }
+        .story-panel-inner--dark .story-headline { color: #ffffff; }
+        .story-panel-inner--gold .story-headline { color: #1a1c1c; }
+        .story-text {
+            max-width: 50ch;
+            font-family: Montserrat, sans-serif;
+            font-size: clamp(1rem, 2.2vw, 1.7rem);
+            line-height: 1.5;
+        }
+        .story-rule {
+            border: none;
+            border-top: 1px solid currentColor;
+            opacity: 0.35;
+            margin: clamp(1rem, 2vw, 1.75rem) 0;
+        }
+        .story-badge {
+            display: inline-block;
+            margin-top: clamp(1rem, 2vw, 1.5rem);
+            border: 1px solid #e9c349;
+            color: #e9c349;
+            padding: 0.55rem 1.3rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.62rem, 1vw, 0.74rem);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .story-panel { position: static; }
+        }
     </style>
 </head>
 <body class="font-body-md blueprint-grid">
@@ -603,7 +711,10 @@
 <p class="text-on-surface-variant font-body-lg text-body-lg italic">"Une agence vidéo n'est pas une agence de publicité."</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 scroll-reveal">
-<div class="border border-architectural-gray p-12 bg-black relative">
+<div class="flip-card" tabindex="0" role="button" aria-label="Studio vidéo classique — retourner la carte">
+<div class="flip-card-inner">
+<div class="flip-card-face flip-card-front border border-architectural-gray bg-black">
+<div class="flip-card-content p-12">
 <div class="absolute top-0 right-0 p-4 font-label-technical text-label-sm text-error opacity-50 uppercase tracking-widest">Incomplet</div>
 <h3 class="font-headline-md text-headline-md text-primary mb-8 border-b border-architectural-gray pb-4">STUDIO VIDÉO CLASSIQUE</h3>
 <ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
@@ -613,7 +724,20 @@
 <li class="flex items-center gap-3"><span class="material-symbols-outlined text-error">close</span> KPIs ignorés ou non mesurés</li>
 </ul>
 </div>
-<div class="border border-secondary p-12 bg-black relative gold-glow">
+</div>
+<div class="flip-card-face flip-card-back border border-architectural-gray bg-black">
+<div class="flip-card-content p-12 flex flex-col items-center justify-center text-center">
+<div class="font-label-technical text-label-sm text-error opacity-60 uppercase tracking-widest mb-6">Le constat</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant italic mb-8">« Une belle image — mais aucun moteur d'acquisition derrière. »</p>
+<button type="button" class="border border-on-surface-variant text-primary px-8 py-3 font-label-technical text-label-technical uppercase tracking-widest hover:border-secondary hover:text-secondary transition-all active:scale-95 duration-200">PARLONS-EN</button>
+</div>
+</div>
+</div>
+</div>
+<div class="flip-card" tabindex="0" role="button" aria-label="Notre architecture — retourner la carte">
+<div class="flip-card-inner">
+<div class="flip-card-face flip-card-front border border-secondary bg-black">
+<div class="flip-card-content p-12">
 <div class="absolute top-0 right-0 p-4 font-label-technical text-label-sm text-secondary uppercase tracking-widest">Kingdom Ads</div>
 <h3 class="font-headline-md text-headline-md text-primary mb-8 border-b border-secondary/30 pb-4">NOTRE ARCHITECTURE</h3>
 <ul class="space-y-4 font-body-md text-body-md text-primary">
@@ -624,42 +748,86 @@
 </ul>
 </div>
 </div>
-</section>
-<!-- Section: Method & Scene -->
-<section class="py-32 px-margin-mobile md:px-margin-desktop border-y border-architectural-gray relative">
-<div class="flex flex-col md:flex-row justify-between items-start mb-24">
-<div class="max-w-2xl scroll-reveal">
-<div class="font-label-technical text-label-technical text-secondary mb-4">10 // 16</div>
-<h2 class="font-headline-lg text-headline-lg text-primary mb-8 uppercase">Anatomie d'une scène</h2>
-<p class="text-on-surface-variant font-body-lg text-body-lg">Nos publicités sont des mini-court-métrages. Nous ne vendons pas des produits, nous résolvons des conflits par la narration.</p>
-</div>
-<div class="mt-8 md:mt-0 scroll-reveal">
-<div class="font-label-technical text-label-sm text-secondary border border-secondary px-6 py-2 uppercase">L'angle pèse 80% du résultat</div>
+<div class="flip-card-face flip-card-back border border-secondary bg-black">
+<div class="flip-card-content p-12 flex flex-col items-center justify-center text-center">
+<div class="font-label-technical text-label-sm text-secondary uppercase tracking-widest mb-6">Le résultat</div>
+<p class="font-body-lg text-body-lg text-primary italic mb-8">« Une machine d'acquisition complète — du scénario au scaling, pilotée par la donnée. »</p>
+<button type="button" class="bg-secondary text-on-secondary px-8 py-3 font-label-technical text-label-technical uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-all active:scale-95 duration-200">PARLONS-EN</button>
 </div>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-architectural-gray border border-architectural-gray scroll-reveal">
-<div class="bg-black p-10 hover:bg-neutral-900 transition-all">
-<div class="font-headline-lg text-headline-lg text-secondary/20 mb-6 font-bold">01</div>
-<h4 class="font-headline-md text-headline-md text-primary mb-4">UNE SCÈNE</h4>
-<p class="text-on-surface-variant">L'immersion immédiate dans un contexte familier ou intriguant.</p>
 </div>
-<div class="bg-black p-10 hover:bg-neutral-900 transition-all">
-<div class="font-headline-lg text-headline-lg text-secondary/20 mb-6 font-bold">02</div>
-<h4 class="font-headline-md text-headline-md text-primary mb-4">UN NARRATEUR</h4>
-<p class="text-on-surface-variant">Une incarnation forte qui porte la voix de la marque.</p>
-</div>
-<div class="bg-black p-10 hover:bg-neutral-900 transition-all">
-<div class="font-headline-lg text-headline-lg text-secondary/20 mb-6 font-bold">03</div>
-<h4 class="font-headline-md text-headline-md text-primary mb-4">UN CONFLIT</h4>
-<p class="text-on-surface-variant">Le point de friction qui empêche votre client de dormir.</p>
-</div>
-<div class="bg-black p-10 hover:bg-neutral-900 transition-all">
-<div class="font-headline-lg text-headline-lg text-secondary/20 mb-6 font-bold">04</div>
-<h4 class="font-headline-md text-headline-md text-primary mb-4">RÉSOLUTION</h4>
-<p class="text-on-surface-variant">Votre solution comme seule issue logique et satisfaisante.</p>
 </div>
 </div>
 </section>
+<!-- Section: Anatomie d'une scène — story-scroll stacked panels -->
+<div class="story-scroll">
+<section class="story-panel" style="z-index:1">
+<div class="story-panel-inner story-panel-inner--dark">
+<div>
+<p class="story-label">10 // 16 — Méthode</p>
+<hr class="story-rule"/>
+</div>
+<h3 class="story-headline">Anatomie<br/>d'une<br/>scène</h3>
+<div>
+<hr class="story-rule"/>
+<p class="story-text">Nos publicités sont des mini-court-métrages. Nous ne vendons pas des produits — nous résolvons des conflits par la narration.</p>
+<span class="story-badge">L'angle pèse 80% du résultat</span>
+</div>
+</div>
+</section>
+<section class="story-panel" style="z-index:2">
+<div class="story-panel-inner story-panel-inner--gold">
+<div>
+<p class="story-label">01 — La scène</p>
+<hr class="story-rule"/>
+</div>
+<h3 class="story-headline">Une<br/>scène</h3>
+<div>
+<hr class="story-rule"/>
+<p class="story-text">L'immersion immédiate dans un contexte familier ou intriguant.</p>
+</div>
+</div>
+</section>
+<section class="story-panel" style="z-index:3">
+<div class="story-panel-inner story-panel-inner--dark">
+<div>
+<p class="story-label">02 — Le narrateur</p>
+<hr class="story-rule"/>
+</div>
+<h3 class="story-headline">Un<br/>narrateur</h3>
+<div>
+<hr class="story-rule"/>
+<p class="story-text">Une incarnation forte qui porte la voix de la marque.</p>
+</div>
+</div>
+</section>
+<section class="story-panel" style="z-index:4">
+<div class="story-panel-inner story-panel-inner--gold">
+<div>
+<p class="story-label">03 — Le conflit</p>
+<hr class="story-rule"/>
+</div>
+<h3 class="story-headline">Un<br/>conflit</h3>
+<div>
+<hr class="story-rule"/>
+<p class="story-text">Le point de friction qui empêche votre client de dormir.</p>
+</div>
+</div>
+</section>
+<section class="story-panel" style="z-index:5">
+<div class="story-panel-inner story-panel-inner--dark">
+<div>
+<p class="story-label">04 — La résolution</p>
+<hr class="story-rule"/>
+</div>
+<h3 class="story-headline">Résolution</h3>
+<div>
+<hr class="story-rule"/>
+<p class="story-text">Votre solution comme seule issue logique et satisfaisante.</p>
+</div>
+</div>
+</section>
+</div>
 <!-- Section: Gift (6 Angles) -->
 <section class="py-32 px-margin-mobile md:px-margin-desktop bg-black border-y border-architectural-gray">
 <div class="text-center mb-24 scroll-reveal">
@@ -1165,6 +1333,69 @@ Défilez pour dévoiler
             window.addEventListener('scroll', onScroll, { passive: true });
             window.addEventListener('resize', onScroll);
             render(progress());
+        })();
+
+        // Flip cards (DISTINCTION) — hover handles desktop via CSS; here we add
+        // tap (touch) and keyboard (Enter / Space) toggling of the .is-flipped class.
+        (function () {
+            const noHover = window.matchMedia('(hover: none)').matches;
+            document.querySelectorAll('.flip-card').forEach(function (card) {
+                if (noHover) {
+                    card.addEventListener('click', function () {
+                        card.classList.toggle('is-flipped');
+                    });
+                }
+                card.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        card.classList.toggle('is-flipped');
+                    }
+                });
+            });
+            // a tap on a back-face button must not bubble up and flip the card back
+            document.querySelectorAll('.flip-card-back button').forEach(function (btn) {
+                btn.addEventListener('click', function (e) { e.stopPropagation(); });
+            });
+        })();
+
+        // Story-scroll — port of @boudjadjasamira/story-scroll (GSAP ScrollTrigger).
+        // Stacking is done with position:sticky (CSS); here we drive the rotation:
+        // each panel after the first swings in from 30deg as it scrolls into view.
+        (function () {
+            const panels = Array.prototype.slice.call(
+                document.querySelectorAll('.story-panel'));
+            if (!panels.length) return;
+
+            const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+            const items = panels.map(function (panel, i) {
+                return { panel: panel, inner: panel.querySelector('.story-panel-inner'), i: i };
+            });
+
+            function update() {
+                const vh = window.innerHeight;
+                for (let k = 0; k < items.length; k++) {
+                    const it = items[k];
+                    if (it.i === 0 || !it.inner) continue;   // first panel stays flat
+                    if (reduced) { it.inner.style.transform = 'none'; continue; }
+                    const top = it.panel.getBoundingClientRect().top;
+                    // 30deg when the panel top is at the viewport bottom,
+                    // 0deg once it reaches 25% from the top.
+                    const p = clamp((vh - top) / (0.75 * vh), 0, 1);
+                    it.inner.style.transform = 'rotate(' + (30 * (1 - p)).toFixed(2) + 'deg)';
+                }
+            }
+
+            let ticking = false;
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(function () { update(); ticking = false; });
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            update();
         })();
     </script>
 </body></html>
