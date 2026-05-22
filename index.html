@@ -107,7 +107,9 @@
         body {
             background-color: #000000;
             color: #e2e2e2;
-            overflow-x: hidden;
+            /* clip (not hidden) — hidden makes body a scroll container and
+               breaks position:sticky on descendants (cinematic section). */
+            overflow-x: clip;
         }
 
         .blueprint-grid {
@@ -318,6 +320,114 @@
         }
         @media (prefers-reduced-motion: reduce) {
             .cta-gold-gradient { animation: none; }
+        }
+
+        /* Scroll-expansion cinematic section — ScrollExpandMedia ported from a
+           global scroll-hijack to a pinned, scroll-linked reveal. */
+        .expand-section {
+            position: relative;
+            height: 240vh;
+            background: #000000;
+        }
+        .expand-sticky {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: #000000;
+        }
+        .expand-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse 55% 55% at 50% 50%,
+                        rgba(233, 195, 73, 0.07), transparent 70%);
+        }
+        .expand-media {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+            z-index: 10;
+            background: #0a0a0a;
+            box-shadow: 0 0 0 1px rgba(233, 195, 73, 0.3),
+                        0 30px 90px rgba(0, 0, 0, 0.7);
+            will-change: width, height;
+        }
+        .expand-img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: grayscale(1) contrast(1.05);
+        }
+        .expand-media-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: #000000;
+            pointer-events: none;
+        }
+        .expand-caption {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 24px;
+            background: radial-gradient(ellipse at center,
+                        rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.2) 65%,
+                        transparent 100%);
+        }
+        .expand-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .expand-word {
+            font-family: Montserrat, sans-serif;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            font-size: clamp(40px, 8.5vw, 104px);
+            color: #ffffff;
+            will-change: transform;
+        }
+        .expand-hint {
+            position: absolute;
+            left: 50%;
+            bottom: 40px;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .expand-hint .material-symbols-outlined {
+            font-size: 18px;
+            animation: expand-hint-bounce 1.8s ease-in-out infinite;
+        }
+        @keyframes expand-hint-bounce {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(5px); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .expand-section { height: 100vh; }
+            .expand-sticky { position: relative; }
+            .expand-hint { display: none; }
         }
     </style>
 </head>
@@ -650,6 +760,28 @@
 <div id="partners-blur-right" class="progressive-blur progressive-blur--right" aria-hidden="true"></div>
 </div>
 </section>
+<!-- Section: Scroll-expansion cinematic reveal (ScrollExpandMedia, adapted) -->
+<section id="expand-section" class="expand-section">
+<div class="expand-sticky">
+<div class="expand-bg"></div>
+<div id="expand-media" class="expand-media" style="width:360px;height:440px;border-radius:16px">
+<img class="expand-img" src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Salle de cinéma" loading="lazy" onerror="this.style.display='none'"/>
+<div id="expand-media-overlay" class="expand-media-overlay" style="opacity:0.55"></div>
+<div id="expand-caption" class="expand-caption" style="opacity:0">
+<div class="font-label-technical text-label-technical text-secondary mb-4 uppercase tracking-widest">15 // 16</div>
+<p class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase">Tout commence par une histoire.</p>
+</div>
+</div>
+<h2 class="expand-title" aria-label="Filmer une histoire">
+<span id="expand-word-left" class="expand-word">FILMER</span>
+<span id="expand-word-right" class="expand-word">UNE HISTOIRE</span>
+</h2>
+<div id="expand-hint" class="expand-hint font-label-technical text-label-technical text-on-surface-variant uppercase tracking-widest">
+<span class="material-symbols-outlined">keyboard_double_arrow_down</span>
+Défilez pour dévoiler
+</div>
+</div>
+</section>
 <!-- Final CTA Section -->
 <section class="py-48 px-margin-mobile md:px-margin-desktop border-b border-architectural-gray relative overflow-hidden text-center cta-gold-gradient">
 <div class="absolute inset-0 blueprint-grid opacity-10 pointer-events-none"></div>
@@ -958,6 +1090,81 @@
             const right = document.getElementById('partners-blur-right');
             if (left) progressiveBlur(left, 'left', 8, 0.5);
             if (right) progressiveBlur(right, 'right', 8, 0.5);
+        })();
+
+        // Scroll-expansion cinematic section — port of ScrollExpandMedia,
+        // adapted from a global scroll-hijack to a pinned, scroll-linked reveal:
+        // progress is derived from how far the tall section has scrolled past,
+        // so the page scroll is never blocked.
+        (function () {
+            const section = document.getElementById('expand-section');
+            if (!section) return;
+            const media   = document.getElementById('expand-media');
+            const overlay = document.getElementById('expand-media-overlay');
+            const caption = document.getElementById('expand-caption');
+            const bg      = section.querySelector('.expand-bg');
+            const title   = section.querySelector('.expand-title');
+            const wordL   = document.getElementById('expand-word-left');
+            const wordR   = document.getElementById('expand-word-right');
+            const hint    = document.getElementById('expand-hint');
+
+            const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+            function render(p) {
+                const vw = window.innerWidth;
+                const vh = window.innerHeight;
+                const mobile = vw < 768;
+
+                // media frame grows from a small card to fill the viewport
+                const wMin = mobile ? 240 : 360;
+                const hMin = mobile ? 320 : 440;
+                media.style.width  = (wMin + p * (vw - wMin)) + 'px';
+                media.style.height = (hMin + p * (vh - hMin)) + 'px';
+                media.style.borderRadius = (16 * (1 - p)) + 'px';
+
+                // dark tint clears as the frame fills the screen
+                overlay.style.opacity = (0.55 - p * 0.35).toFixed(3);
+                bg.style.opacity = (1 - p).toFixed(3);
+
+                // title words split apart, then fade out
+                const dx = (mobile ? 78 : 60) * p;
+                wordL.style.transform = 'translateX(-' + dx + 'vw)';
+                wordR.style.transform = 'translateX(' + dx + 'vw)';
+                title.style.opacity = clamp(1 - (p - 0.2) / 0.35, 0, 1).toFixed(3);
+
+                // hint disappears as soon as the user starts scrolling
+                hint.style.opacity = clamp(1 - p / 0.12, 0, 1).toFixed(3);
+
+                // caption fades in only once the frame is (almost) full
+                const cIn = clamp((p - 0.82) / 0.18, 0, 1);
+                caption.style.opacity = cIn.toFixed(3);
+                caption.style.transform = 'translateY(' + (24 * (1 - cIn)) + 'px)';
+            }
+
+            function progress() {
+                const rect = section.getBoundingClientRect();
+                const total = rect.height - window.innerHeight;
+                if (total <= 0) return 1;
+                return clamp(-rect.top / total, 0, 1);
+            }
+
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                render(1);
+                return;
+            }
+
+            let ticking = false;
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(function () {
+                    render(progress());
+                    ticking = false;
+                });
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            render(progress());
         })();
     </script>
 </body></html>
