@@ -1,0 +1,15 @@
+/* TEAM */
+    Founder / Strategy: Alexandre
+    Contact: alexandre [at] kingdomads.fr
+    Location: France
+
+    Founder / Creative: William
+    Contact: william [at] kingdomads.fr
+    Location: France
+
+/* SITE */
+    Last update: 2026/05/26
+    Language: Français
+    Standards: HTML5, JSON-LD, OpenGraph, Schema.org
+    Components: Tailwind CSS
+    Software: VS Code

@@ -1,0 +1,33 @@
+# Kingdom Ads — robots.txt
+# https://pub-kads.netlify.app/
+
+User-agent: *
+Allow: /
+Disallow: /input/
+
+# Bloquer les bots SEO agressifs / scrapers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Bloquer les bots IA (entraînement de modèles) — décommenter si souhaité
+# User-agent: GPTBot
+# Disallow: /
+# User-agent: ClaudeBot
+# Disallow: /
+# User-agent: anthropic-ai
+# Disallow: /
+# User-agent: CCBot
+# Disallow: /
+# User-agent: Google-Extended
+# Disallow: /
+
+Sitemap: https://pub-kads.netlify.app/sitemap.xml

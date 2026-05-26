@@ -2,11 +2,70 @@
 
 <html class="dark" lang="fr"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>KINGDOM ADS // Strategic Acquisition Architects</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+
+<!-- Primary SEO -->
+<title>Kingdom Ads — Agence publicité Meta &amp; vidéo qui convertit | Strategic Acquisition Architects</title>
+<meta name="description" content="Kingdom Ads conçoit des publicités vidéo scénarisées et pilote vos campagnes Meta de A à Z. +50 marques accompagnées, 2M€ de budget piloté. Audit stratégique gratuit."/>
+<meta name="keywords" content="agence publicité Meta, publicité Facebook Ads, publicité Instagram, agence vidéo publicitaire, copywriting publicitaire, scénarisation pub, acquisition client, scaling Meta Ads, Kingdom Ads, agence acquisition France"/>
+<meta name="author" content="Kingdom Ads"/>
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+<meta name="googlebot" content="index, follow"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="theme-color" content="#000000"/>
+<meta name="color-scheme" content="dark"/>
+<meta name="application-name" content="Kingdom Ads"/>
+<meta name="apple-mobile-web-app-title" content="Kingdom Ads"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
+<meta name="generator" content="Kingdom Ads"/>
+
+<!-- Canonical & language alternates -->
+<link rel="canonical" href="https://pub-kads.netlify.app/"/>
+<link rel="alternate" hreflang="fr" href="https://pub-kads.netlify.app/"/>
+<link rel="alternate" hreflang="x-default" href="https://pub-kads.netlify.app/"/>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="fr_FR"/>
+<meta property="og:site_name" content="Kingdom Ads"/>
+<meta property="og:title" content="Kingdom Ads — Strategic Acquisition Architects"/>
+<meta property="og:description" content="Publicités vidéo scénarisées + pilotage Meta Ads. Une machine d'acquisition complète, du scénario au scaling."/>
+<meta property="og:url" content="https://pub-kads.netlify.app/"/>
+<meta property="og:image" content="https://pub-kads.netlify.app/og-image.jpg"/>
+<meta property="og:image:secure_url" content="https://pub-kads.netlify.app/og-image.jpg"/>
+<meta property="og:image:type" content="image/jpeg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Kingdom Ads — Strategic Acquisition Architects"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Kingdom Ads — Strategic Acquisition Architects"/>
+<meta name="twitter:description" content="Publicités vidéo scénarisées + pilotage Meta Ads. Une machine d'acquisition complète."/>
+<meta name="twitter:image" content="https://pub-kads.netlify.app/og-image.jpg"/>
+<meta name="twitter:image:alt" content="Kingdom Ads — Strategic Acquisition Architects"/>
+
+<!-- Favicons & manifest -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="/favicon.ico" sizes="any"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<link rel="mask-icon" href="/favicon.svg" color="#e9c349"/>
+<link rel="manifest" href="/site.webmanifest"/>
+
+<!-- Performance: pre-establish connections to remote origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin=""/>
+<link rel="dns-prefetch" href="https://images.unsplash.com"/>
+<link rel="preload" as="image" href="input/alex-800.webp" fetchpriority="high"/>
+
+<!-- Tailwind (CDN, used as a build-less prototype) -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
@@ -104,6 +163,10 @@
         }
     </script>
 <style>
+        html { scroll-behavior: smooth; }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+        }
         body {
             background-color: #000000;
             color: #e2e2e2;
@@ -540,11 +603,15 @@
 
         /* --- MOBILE RESPONSIVE REFINEMENTS --- */
         @media (max-width: 767px) {
-            /* H2 section headlines scale down so they don't dominate small screens */
+            /* H2 section headlines: fluid scaling so even long uppercase titles
+               like "LE PROCESSUS ARCHITECTURAL" never overflow a narrow phone. */
             .text-headline-lg {
-                font-size: 30px;
-                line-height: 36px;
-                letter-spacing: -0.01em;
+                font-size: clamp(22px, 6.4vw, 32px);
+                line-height: 1.15;
+                letter-spacing: -0.02em;
+                word-break: break-word;
+                overflow-wrap: anywhere;
+                hyphens: auto;
             }
             /* Headline-md (h3) — tighten on mobile so cards breathe */
             .text-headline-md {
@@ -553,8 +620,8 @@
             }
             /* Stats numbers: keep them bold but fit narrow cells */
             section .grid .font-headline-lg.text-headline-lg.text-secondary {
-                font-size: 34px;
-                line-height: 38px;
+                font-size: clamp(28px, 8vw, 38px);
+                line-height: 1.1;
             }
             /* Story-scroll panels: ensure content fits when stacked sticky */
             .story-panel-inner {
@@ -568,28 +635,185 @@
             .expand-word { font-size: clamp(36px, 11vw, 64px); }
         }
 
-        /* Very small phones (≤ 380px): squeeze padding further */
-        @media (max-width: 380px) {
-            .text-headline-lg { font-size: 26px; line-height: 32px; }
+        /* Offset anchor jumps so the floating header doesn't cover section titles */
+        section[id], [id="methode"] { scroll-margin-top: 96px; }
+
+        /* Visually-hidden helper (skip link & sr-only labels) */
+        .sr-only {
+            position: absolute;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0, 0, 0, 0);
+            white-space: nowrap; border: 0;
         }
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            z-index: 100;
+            background: #e9c349;
+            color: #1a1c1c;
+            padding: 0.75rem 1.25rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .skip-link:focus { left: 1rem; top: 1rem; }
     </style>
+
+<!-- Structured data (schema.org / JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://pub-kads.netlify.app/#organization",
+      "name": "Kingdom Ads",
+      "alternateName": "Strategic Acquisition Architects",
+      "url": "https://pub-kads.netlify.app/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://pub-kads.netlify.app/logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://pub-kads.netlify.app/og-image.jpg",
+      "description": "Agence publicité Meta et vidéo qui transforme votre marque en machine d'acquisition. Scénarisation, copywriting, diffusion et scaling pilotés par la donnée.",
+      "slogan": "Strategic Acquisition Architects",
+      "founder": [
+        { "@type": "Person", "@id": "https://pub-kads.netlify.app/#alexandre", "name": "Alexandre", "jobTitle": "Founder, Strategy", "email": "mailto:alexandre@kingdomads.fr", "worksFor": { "@id": "https://pub-kads.netlify.app/#organization" } },
+        { "@type": "Person", "@id": "https://pub-kads.netlify.app/#william", "name": "William", "jobTitle": "Founder, Creative", "email": "mailto:william@kingdomads.fr", "worksFor": { "@id": "https://pub-kads.netlify.app/#organization" } }
+      ],
+      "employee": [
+        { "@id": "https://pub-kads.netlify.app/#alexandre" },
+        { "@id": "https://pub-kads.netlify.app/#william" }
+      ],
+      "foundingDate": "2015",
+      "areaServed": { "@type": "Country", "name": "France" },
+      "knowsAbout": ["Meta Ads", "Facebook Ads", "Instagram Ads", "Publicité vidéo", "Copywriting", "Scénarisation publicitaire", "Acquisition client", "Scaling Meta Ads"],
+      "contactPoint": [
+        { "@type": "ContactPoint", "contactType": "sales", "email": "alexandre@kingdomads.fr", "availableLanguage": ["French", "English"] },
+        { "@type": "ContactPoint", "contactType": "creative", "email": "william@kingdomads.fr", "availableLanguage": ["French", "English"] }
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://pub-kads.netlify.app/#service",
+      "name": "Kingdom Ads",
+      "url": "https://pub-kads.netlify.app/",
+      "image": "https://pub-kads.netlify.app/og-image.jpg",
+      "description": "Architecture publicitaire complète : audit data, scénarisation stratégique, captation haute précision, diffusion Meta Ads, itération continue.",
+      "priceRange": "€€€",
+      "areaServed": { "@type": "Country", "name": "France" },
+      "serviceType": ["Publicité Meta", "Création vidéo publicitaire", "Copywriting", "Scénarisation", "Acquisition client", "Scaling Ads"],
+      "provider": { "@id": "https://pub-kads.netlify.app/#organization" },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Architecture d'acquisition",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Audit stratégique", "description": "Analyse data et assets existants." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Écriture & scénarisation", "description": "Scénarisation stratégique des publicités." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tournage", "description": "Captation haute précision." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diffusion Meta Ads", "description": "Pilotage de l'algorithme et scaling." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Optimisation continue", "description": "Itération et amélioration des résultats." } }
+        ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "50",
+        "bestRating": "5"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://pub-kads.netlify.app/#website",
+      "url": "https://pub-kads.netlify.app/",
+      "name": "Kingdom Ads",
+      "inLanguage": "fr-FR",
+      "publisher": { "@id": "https://pub-kads.netlify.app/#organization" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://pub-kads.netlify.app/#webpage",
+      "url": "https://pub-kads.netlify.app/",
+      "name": "Kingdom Ads — Strategic Acquisition Architects",
+      "isPartOf": { "@id": "https://pub-kads.netlify.app/#website" },
+      "about": { "@id": "https://pub-kads.netlify.app/#organization" },
+      "primaryImageOfPage": "https://pub-kads.netlify.app/og-image.jpg",
+      "inLanguage": "fr-FR",
+      "datePublished": "2025-01-01",
+      "dateModified": "2026-05-26",
+      "breadcrumb": { "@id": "https://pub-kads.netlify.app/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://pub-kads.netlify.app/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://pub-kads.netlify.app/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://pub-kads.netlify.app/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "En quoi Kingdom Ads diffère d'un studio vidéo classique ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un studio vidéo se concentre sur l'esthétique pure. Kingdom Ads est une agence d'acquisition : scénarisation basée sur la donnée, pilotage quotidien des budgets, tracking et attribution précise, et optimisation continue par creative testing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quels secteurs Kingdom Ads accompagne-t-elle ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B2B, immobilier, formation, joaillerie, SaaS et retail — neuf secteurs maîtrisés à ce jour."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien de marques ont déjà travaillé avec Kingdom Ads ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plus de 50 marques accompagnées, plus de 2 millions d'euros de budget publicitaire piloté, sur 11 ans d'expérience dans la publicité."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelle est la méthode Kingdom Ads ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un processus en cinq étapes : audit data et assets, écriture et scénarisation stratégique, tournage haute précision, diffusion sur l'algorithme Meta avec scaling, itération continue jusqu'au résultat."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body class="font-body-md blueprint-grid">
+<a class="skip-link" href="#main-content">Aller au contenu</a>
 <!-- Top Navigation Bar — floating header (header-2 style) -->
-<header id="site-header" class="fixed top-0 left-0 right-0 z-50 mx-auto w-full max-w-5xl">
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 mx-auto w-full max-w-5xl" role="banner">
 <div id="header-shell" class="w-full border-b border-transparent md:border">
-<nav id="header-nav" class="flex h-16 w-full items-center justify-between px-4 md:h-14 md:px-6">
-<a class="font-headline-md text-headline-md tracking-tighter text-primary" href="#">KINGDOM ADS</a>
+<nav id="header-nav" class="flex h-16 w-full items-center justify-between px-4 md:h-14 md:px-6" aria-label="Navigation principale">
+<a class="font-headline-md text-headline-md tracking-tighter text-primary" href="#hero" aria-label="Kingdom Ads — Accueil">KINGDOM ADS</a>
 <div class="hidden md:flex items-center gap-6">
-<a class="font-label-technical text-label-technical text-secondary border-b border-secondary pb-1" href="#">HISTOIRE</a>
-<a class="font-label-technical text-label-technical text-on-surface-variant hover:text-primary transition-colors" href="#">EXPÉRIENCE</a>
-<a class="font-label-technical text-label-technical text-on-surface-variant hover:text-primary transition-colors" href="#">MÉTHODE</a>
-<a class="font-label-technical text-label-technical text-on-surface-variant hover:text-primary transition-colors" href="#">DISTINCTION</a>
-<a class="font-label-technical text-label-technical text-on-surface-variant hover:text-primary transition-colors" href="#">PROCESSUS</a>
-<button class="bg-primary text-on-primary px-6 py-2.5 font-label-technical text-label-technical uppercase tracking-widest hover:bg-secondary transition-all active:scale-95 duration-200">PARLONS-EN</button>
+<a class="font-label-technical text-label-technical text-secondary border-b border-secondary pb-1" href="#histoire" aria-current="page">HISTOIRE</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant hover:text-primary transition-colors" href="#experience">EXPÉRIENCE</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant hover:text-primary transition-colors" href="#methode">MÉTHODE</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant hover:text-primary transition-colors" href="#distinction">DISTINCTION</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant hover:text-primary transition-colors" href="#processus">PROCESSUS</a>
+<a class="bg-primary text-on-primary px-6 py-2.5 font-label-technical text-label-technical uppercase tracking-widest hover:bg-secondary transition-all active:scale-95 duration-200" href="#contact">PARLONS-EN</a>
 </div>
-<button id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" class="md:hidden flex items-center justify-center w-11 h-11 border border-outline-variant text-primary hover:border-secondary hover:text-secondary transition-colors active:scale-95">
-<svg class="menu-icon w-5 h-5" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<button id="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden flex items-center justify-center w-11 h-11 border border-outline-variant text-primary hover:border-secondary hover:text-secondary transition-colors active:scale-95">
+<svg class="menu-icon w-5 h-5" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
 <path class="morph-path" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
 <path d="M7 16 27 16"></path>
 </svg>
@@ -597,21 +821,22 @@
 </nav>
 </div>
 <!-- Mobile overlay menu -->
-<div id="mobile-menu" class="fixed top-16 right-0 bottom-0 left-0 z-40 flex flex-col overflow-y-auto bg-background/95 backdrop-blur-lg border-t border-outline-variant md:hidden">
+<div id="mobile-menu" class="fixed top-16 right-0 bottom-0 left-0 z-40 flex flex-col overflow-y-auto bg-background/95 backdrop-blur-lg border-t border-outline-variant md:hidden" aria-label="Menu mobile">
 <div class="flex min-h-full w-full flex-col justify-between gap-y-8 px-margin-mobile py-8">
-<div class="flex flex-col">
-<a class="font-label-technical text-label-technical text-secondary uppercase tracking-widest py-5 border-b border-outline-variant/30" href="#">HISTOIRE</a>
-<a class="font-label-technical text-label-technical text-on-surface-variant uppercase tracking-widest py-5 border-b border-outline-variant/30 hover:text-primary transition-colors" href="#">EXPÉRIENCE</a>
-<a class="font-label-technical text-label-technical text-on-surface-variant uppercase tracking-widest py-5 border-b border-outline-variant/30 hover:text-primary transition-colors" href="#">MÉTHODE</a>
-<a class="font-label-technical text-label-technical text-on-surface-variant uppercase tracking-widest py-5 border-b border-outline-variant/30 hover:text-primary transition-colors" href="#">DISTINCTION</a>
-<a class="font-label-technical text-label-technical text-on-surface-variant uppercase tracking-widest py-5 border-b border-outline-variant/30 hover:text-primary transition-colors" href="#">PROCESSUS</a>
-</div>
-<button class="bg-primary text-on-primary w-full px-8 py-5 font-label-technical text-label-technical uppercase tracking-widest hover:bg-secondary transition-all active:scale-95 duration-200">PARLONS-EN</button>
+<nav class="flex flex-col" aria-label="Navigation mobile">
+<a class="font-label-technical text-label-technical text-secondary uppercase tracking-widest py-5 border-b border-outline-variant/30" href="#histoire" aria-current="page">HISTOIRE</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant uppercase tracking-widest py-5 border-b border-outline-variant/30 hover:text-primary transition-colors" href="#experience">EXPÉRIENCE</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant uppercase tracking-widest py-5 border-b border-outline-variant/30 hover:text-primary transition-colors" href="#methode">MÉTHODE</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant uppercase tracking-widest py-5 border-b border-outline-variant/30 hover:text-primary transition-colors" href="#distinction">DISTINCTION</a>
+<a class="font-label-technical text-label-technical text-on-surface-variant uppercase tracking-widest py-5 border-b border-outline-variant/30 hover:text-primary transition-colors" href="#processus">PROCESSUS</a>
+</nav>
+<a class="bg-primary text-on-primary w-full px-8 py-5 font-label-technical text-label-technical uppercase tracking-widest hover:bg-secondary transition-all active:scale-95 duration-200 text-center" href="#contact">PARLONS-EN</a>
 </div>
 </div>
 </header>
+<main id="main-content">
 <!-- Hero Section -->
-<header class="relative min-h-screen flex flex-col justify-center items-start px-margin-mobile md:px-margin-desktop pt-28 md:pt-32 overflow-hidden">
+<section id="hero" class="relative min-h-screen flex flex-col justify-center items-start px-margin-mobile md:px-margin-desktop pt-28 md:pt-32 overflow-hidden" aria-label="Introduction">
 <div class="absolute inset-0 pointer-events-none">
 <div class="w-full h-full bg-gradient-to-br from-architectural-gray/30 to-transparent"></div>
 <div id="hero-paths" class="absolute inset-0 overflow-hidden"></div>
@@ -633,16 +858,16 @@
 </div>
 </div>
 </div>
-<div class="absolute bottom-12 left-margin-desktop hidden md:block">
+<div class="absolute bottom-12 left-margin-desktop hidden md:block" aria-hidden="true">
 <span class="material-symbols-outlined text-secondary animate-bounce">arrow_downward</span>
 </div>
-</header>
+</section>
 <!-- Section: Notre Histoire -->
-<section class="py-20 md:py-32 px-margin-mobile md:px-margin-desktop border-y border-architectural-gray relative overflow-hidden">
+<section id="histoire" class="py-20 md:py-32 px-margin-mobile md:px-margin-desktop border-y border-architectural-gray relative overflow-hidden" aria-labelledby="histoire-title">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-center">
 <div class="md:col-span-5 scroll-reveal">
 <div class="font-label-technical text-label-technical text-secondary mb-4">03 // 16</div>
-<h2 class="font-headline-lg text-headline-lg text-primary mb-6 md:mb-8">Deux frères. Deux regards.<br/>Une même conviction.</h2>
+<h2 id="histoire-title" class="font-headline-lg text-headline-lg text-primary mb-6 md:mb-8">Deux frères. Deux regards.<br/>Une même conviction.</h2>
 <div class="space-y-6 text-on-surface-variant font-body-lg text-body-lg max-w-lg">
 <p>Faux jumeaux, vrais associés. Experts en pub Meta, copywriting, stratégie créative.</p>
 <p class="text-secondary font-semibold">Deux cerveaux pour chaque projet client. Toujours.</p>
@@ -650,13 +875,13 @@
 </div>
 <div class="md:col-span-7 flex flex-col md:flex-row gap-4 items-stretch md:items-end scroll-reveal">
 <div class="relative group overflow-hidden flex-1 border border-architectural-gray">
-<img class="w-full h-[380px] sm:h-[460px] md:h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="A portrait of a male co-founder with a sharp, professional look, styled in high-contrast black and white cinematic lighting. He is wearing a minimalist dark shirt, standing against a deep architectural background with subtle gold grid lines. The image captures a sense of strategic intellect and premium authority, perfectly aligned with the Strategic Acquisition Architects brand identity." src="input/alex-800.webp"/>
+<img class="w-full h-[380px] sm:h-[460px] md:h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-700" src="input/alex-800.webp" alt="Alexandre, co-fondateur de Kingdom Ads — Strategy &amp; publicité Meta" width="800" height="600" decoding="async" fetchpriority="high"/>
 <div class="absolute bottom-6 left-6 md:bottom-8 md:left-8 right-6 md:right-auto">
 <div class="text-primary font-headline-md text-headline-md tracking-[0.4em] md:tracking-[1em]">ALEXANDRE</div>
 </div>
 </div>
 <div class="relative group overflow-hidden flex-1 border border-architectural-gray">
-<img class="w-full h-[340px] sm:h-[400px] md:h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="A portrait of a male co-founder with a focused, analytical expression, captured in high-contrast cinematic black and white lighting. He wears a high-end black garment, positioned against a dark void background with faint architectural outlines. The visual tone is technical and sophisticated, reflecting the agency's data-driven yet creative approach to digital acquisition." src="input/William-ADAMSHA-400x380.webp"/>
+<img class="w-full h-[340px] sm:h-[400px] md:h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-700" src="input/William-ADAMSHA-400x380.webp" alt="William, co-fondateur de Kingdom Ads — Creative &amp; copywriting publicitaire" width="400" height="380" loading="lazy" decoding="async"/>
 <div class="absolute bottom-6 left-6 md:bottom-8 md:left-8 right-6 md:right-auto">
 <div class="text-primary font-headline-md text-headline-md tracking-[0.4em] md:tracking-[1em]">WILLIAM</div>
 </div>
@@ -665,12 +890,12 @@
 </div>
 </section>
 <!-- Section: Expérience & Stats -->
-<section class="py-20 md:py-32 bg-black border-y border-architectural-gray">
+<section id="experience" class="py-20 md:py-32 bg-black border-y border-architectural-gray" aria-labelledby="experience-title">
 <div class="px-margin-mobile md:px-margin-desktop">
 <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-12 md:mb-16 scroll-reveal">
 <div>
 <div class="font-label-technical text-label-technical text-secondary mb-4">04 // 16</div>
-<h2 class="font-headline-lg text-headline-lg text-primary">LA MESURE DU RÉSULTAT</h2>
+<h2 id="experience-title" class="font-headline-lg text-headline-lg text-primary">LA MESURE DU RÉSULTAT</h2>
 </div>
 <div class="hidden md:block font-label-technical text-label-technical text-on-surface-variant">ENGINEERING PERFORMANCE</div>
 </div>
@@ -707,12 +932,12 @@
 </div>
 </section>
 <!-- Section: The Problem -->
-<section class="py-20 md:py-32 px-margin-mobile md:px-margin-desktop border-y border-architectural-gray relative overflow-hidden">
-<div class="absolute top-0 left-0 w-1/2 h-full border-r border-architectural-gray pointer-events-none hidden md:block"></div>
+<section id="probleme" class="py-20 md:py-32 px-margin-mobile md:px-margin-desktop border-y border-architectural-gray relative overflow-hidden" aria-labelledby="probleme-title">
+<div class="absolute top-0 left-0 w-1/2 h-full border-r border-architectural-gray pointer-events-none hidden md:block" aria-hidden="true"></div>
 <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12">
 <div class="md:col-span-5 scroll-reveal">
 <div class="font-label-technical text-label-technical text-secondary mb-4">05 // 16</div>
-<h2 class="font-headline-lg text-headline-lg text-primary mb-6 md:mb-8 uppercase leading-tight">Le problème n'est pas le canal.<br/><span class="text-secondary">C'est que vous ne savez pas quoi raconter.</span></h2>
+<h2 id="probleme-title" class="font-headline-lg text-headline-lg text-primary mb-6 md:mb-8 uppercase leading-tight">Le problème n'est pas le canal.<br/><span class="text-secondary">C'est que vous ne savez pas quoi raconter.</span></h2>
 </div>
 <div class="md:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-px bg-architectural-gray border border-architectural-gray scroll-reveal">
 <div class="bg-black p-6 md:p-8 group hover:bg-neutral-900 transition-colors duration-500">
@@ -739,10 +964,10 @@
 </div>
 </section>
 <!-- Section: Agency vs Video Studio (Distinction) -->
-<section class="py-20 md:py-32 px-margin-mobile md:px-margin-desktop bg-black border-y border-architectural-gray">
+<section id="distinction" class="py-20 md:py-32 px-margin-mobile md:px-margin-desktop bg-black border-y border-architectural-gray" aria-labelledby="distinction-title">
 <div class="max-w-4xl mx-auto scroll-reveal text-center mb-12 md:mb-20">
 <div class="font-label-technical text-label-technical text-secondary mb-4">07 // 16</div>
-<h2 class="font-headline-lg text-headline-lg text-primary mb-6">DISTINCTION STRATÉGIQUE</h2>
+<h2 id="distinction-title" class="font-headline-lg text-headline-lg text-primary mb-6">DISTINCTION STRATÉGIQUE</h2>
 <p class="text-on-surface-variant font-body-lg text-body-lg italic">"Une agence vidéo n'est pas une agence de publicité."</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 scroll-reveal">
@@ -795,7 +1020,7 @@
 </div>
 </section>
 <!-- Section: Anatomie d'une scène — story-scroll stacked panels -->
-<div class="story-scroll">
+<div id="methode" class="story-scroll" aria-label="Méthode — Anatomie d'une scène">
 <section class="story-panel" style="z-index:1">
 <div class="story-panel-inner story-panel-inner--dark">
 <div>
@@ -864,10 +1089,10 @@
 </section>
 </div>
 <!-- Section: Gift (6 Angles) -->
-<section class="py-20 md:py-32 px-margin-mobile md:px-margin-desktop bg-black border-y border-architectural-gray">
+<section id="angles" class="py-20 md:py-32 px-margin-mobile md:px-margin-desktop bg-black border-y border-architectural-gray" aria-labelledby="angles-title">
 <div class="text-center mb-12 md:mb-24 scroll-reveal">
 <div class="font-label-technical text-label-technical text-secondary mb-4">11 // 16</div>
-<h2 class="font-headline-lg text-headline-lg text-primary uppercase">6 Angles Signature à tester</h2>
+<h2 id="angles-title" class="font-headline-lg text-headline-lg text-primary uppercase">6 Angles Signature à tester</h2>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
 <div class="border border-architectural-gray p-8 scroll-reveal hover:border-secondary/50 transition-colors">
@@ -897,11 +1122,11 @@
 </div>
 </section>
 <!-- Section: Process -->
-<section class="py-20 md:py-32 px-margin-mobile md:px-margin-desktop border-y border-architectural-gray">
+<section id="processus" class="py-20 md:py-32 px-margin-mobile md:px-margin-desktop border-y border-architectural-gray" aria-labelledby="processus-title">
 <div class="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-24 scroll-reveal">
 <div>
 <div class="font-label-technical text-label-technical text-secondary mb-4">13 // 16</div>
-<h2 class="font-headline-lg text-headline-lg text-primary uppercase">Le processus architectural</h2>
+<h2 id="processus-title" class="font-headline-lg text-headline-lg text-primary uppercase">Le processus architectural</h2>
 </div>
 </div>
 <div class="relative">
@@ -936,8 +1161,9 @@
 </div>
 </section>
 <!-- Section: References — partner marquee with progressive blur -->
-<section class="py-20 md:py-32 border-y border-architectural-gray overflow-hidden">
-<div class="font-label-technical text-label-sm text-center text-on-surface-variant mb-10 md:mb-16 uppercase tracking-widest opacity-50">Ils nous font confiance</div>
+<section id="references" class="py-20 md:py-32 border-y border-architectural-gray overflow-hidden" aria-label="Références">
+<h2 class="sr-only">Ils nous font confiance</h2>
+<div class="font-label-technical text-label-sm text-center text-on-surface-variant mb-10 md:mb-16 uppercase tracking-widest opacity-50" aria-hidden="true">Ils nous font confiance</div>
 <div class="partners-marquee scroll-reveal">
 <div class="partners-track">
 <div class="partners-group">
@@ -968,7 +1194,7 @@
 <div class="expand-sticky">
 <div class="expand-bg"></div>
 <div id="expand-media" class="expand-media" style="width:360px;height:440px;border-radius:16px">
-<img class="expand-img" src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Salle de cinéma" loading="lazy" onerror="this.style.display='none'"/>
+<img class="expand-img" src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Salle de cinéma — métaphore du storytelling publicitaire Kingdom Ads" width="1600" height="900" loading="lazy" decoding="async" onerror="this.style.display='none'"/>
 <div id="expand-media-overlay" class="expand-media-overlay" style="opacity:0.55"></div>
 <div id="expand-caption" class="expand-caption" style="opacity:0">
 <div class="font-label-technical text-label-technical text-secondary mb-4 uppercase tracking-widest">15 // 16</div>
@@ -986,11 +1212,11 @@ Défilez pour dévoiler
 </div>
 </section>
 <!-- Final CTA Section -->
-<section class="py-24 md:py-48 px-margin-mobile md:px-margin-desktop border-b border-architectural-gray relative overflow-hidden text-center cta-gold-gradient">
-<div class="absolute inset-0 blueprint-grid opacity-10 pointer-events-none"></div>
+<section id="contact" class="py-24 md:py-48 px-margin-mobile md:px-margin-desktop border-b border-architectural-gray relative overflow-hidden text-center cta-gold-gradient" aria-labelledby="contact-title">
+<div class="absolute inset-0 blueprint-grid opacity-10 pointer-events-none" aria-hidden="true"></div>
 <div class="relative z-10 max-w-4xl mx-auto scroll-reveal">
 <div class="font-label-technical text-label-technical text-on-secondary mb-6 md:mb-8 uppercase tracking-widest">16 // 16 PARLONS CHIFFRES</div>
-<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-secondary mb-10 md:mb-12 uppercase">VOTRE ARCHITECTURE D'ACQUISITION COMMENCE ICI.</h2>
+<h2 id="contact-title" class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-secondary mb-10 md:mb-12 uppercase">VOTRE ARCHITECTURE D'ACQUISITION COMMENCE ICI.</h2>
 <div class="flex flex-col md:flex-row gap-6 justify-center items-center mb-12 md:mb-16">
 <button class="w-full md:w-auto bg-background text-primary px-8 md:px-16 py-5 md:py-6 font-headline-md text-headline-md uppercase tracking-widest transition-all active:scale-95 hover:opacity-90">
                     PRENDRE RDV
@@ -1008,18 +1234,19 @@ Défilez pour dévoiler
 </div>
 </div>
 </section>
+</main>
 <!-- Footer -->
-<footer class="w-full border-t border-outline-variant bg-black">
+<footer class="w-full border-t border-outline-variant bg-black" role="contentinfo">
 <div class="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-6 px-margin-mobile md:px-margin-desktop py-10 md:py-12 w-full">
 <div class="font-headline-md text-headline-md text-primary">KINGDOM ADS</div>
 <div class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant text-center order-3 md:order-none">
                 © 2026 KINGDOM ADS // STRATEGIC ACQUISITION ARCHITECTS
             </div>
-<div class="flex flex-wrap justify-center gap-x-6 gap-y-3 md:gap-8">
-<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-secondary transition-opacity" href="#">MENTIONS LÉGALES</a>
-<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-secondary transition-opacity" href="#">POLITIQUE DE CONFIDENTIALITÉ</a>
-<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-secondary transition-opacity" href="#">CALENDLY</a>
-</div>
+<nav class="flex flex-wrap justify-center gap-x-6 gap-y-3 md:gap-8" aria-label="Liens de pied de page">
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-secondary transition-opacity" href="/mentions-legales" rel="nofollow">MENTIONS LÉGALES</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-secondary transition-opacity" href="/politique-confidentialite" rel="nofollow">POLITIQUE DE CONFIDENTIALITÉ</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-secondary transition-opacity" href="#contact" rel="noopener">CALENDLY</a>
+</nav>
 </div>
 </footer>
 <script>
@@ -1173,6 +1400,7 @@ Défilez pour dévoiler
                 menuOpen = open;
                 header.classList.toggle('menu-open', open);
                 toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
                 document.body.style.overflow = open ? 'hidden' : '';
                 applyScrollState();
             }

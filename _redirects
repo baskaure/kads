@@ -1,0 +1,11 @@
+# Netlify _redirects — canonisation
+# Force HTTPS et redirige les variantes vers la racine canonique.
+
+# Doublons / anciens chemins
+/index.html              /                          301
+/home                    /                          301
+/accueil                 /                          301
+
+# SPA fallback (au cas où des routes inexistantes seraient demandées,
+# on revient à l'accueil plutôt qu'un 404 par défaut)
+/*                       /index.html                200
