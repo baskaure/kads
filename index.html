@@ -760,6 +760,28 @@
 </div>
 </header>
 <main id="main-content">
+<!-- Section: Scroll-expansion cinematic reveal (ScrollExpandMedia, adapted) -->
+<section id="expand-section" class="expand-section">
+<div class="expand-sticky">
+<div class="expand-bg"></div>
+<div id="expand-media" class="expand-media" style="width:360px;height:440px;border-radius:16px">
+<img class="expand-img" src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Salle de cinéma — métaphore du storytelling publicitaire Kingdom Ads" width="1600" height="900" loading="lazy" decoding="async" onerror="this.style.display='none'"/>
+<div id="expand-media-overlay" class="expand-media-overlay" style="opacity:0.55"></div>
+<div id="expand-caption" class="expand-caption" style="opacity:0">
+<div class="font-label-technical text-label-technical text-secondary mb-4 uppercase tracking-widest">15 // 16</div>
+<p class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase">Tout commence par une histoire.</p>
+</div>
+</div>
+<h2 class="expand-title" aria-label="Filmer une histoire">
+<span id="expand-word-left" class="expand-word">FILMER</span>
+<span id="expand-word-right" class="expand-word">UNE HISTOIRE</span>
+</h2>
+<div id="expand-hint" class="expand-hint font-label-technical text-label-technical text-on-surface-variant uppercase tracking-widest">
+<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5l6 6 6-6M6 13l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+Défilez pour dévoiler
+</div>
+</div>
+</section>
 <!-- Hero Section -->
 <section id="hero" class="relative min-h-screen flex flex-col justify-center items-start px-margin-mobile md:px-margin-desktop pt-28 md:pt-32 overflow-hidden" aria-label="Introduction">
 <div class="absolute inset-0 pointer-events-none">
@@ -785,6 +807,35 @@
 </div>
 <div class="absolute bottom-12 left-margin-desktop hidden md:block" aria-hidden="true">
 <svg class="icon icon--lg text-secondary animate-bounce" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M5 13l7 7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+</section>
+<!-- Section: References — partner marquee with progressive blur -->
+<section id="references" class="py-20 md:py-32 border-y border-architectural-gray overflow-hidden" aria-label="Références">
+<h2 class="sr-only">Ils nous font confiance</h2>
+<div class="font-label-technical text-label-sm text-center text-on-surface-variant mb-10 md:mb-16 uppercase tracking-widest opacity-50" aria-hidden="true">Ils nous font confiance</div>
+<div class="partners-marquee scroll-reveal">
+<div class="partners-track">
+<div class="partners-group">
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">RT CONNECTING</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">MEILLEUR TAUX</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">ANDREW APP</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">WAKE UP</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">CAMPER X</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">JOAILLERIE O'CO</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">W2C</span>
+</div>
+<div class="partners-group" aria-hidden="true">
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">RT CONNECTING</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">MEILLEUR TAUX</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">ANDREW APP</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">WAKE UP</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">CAMPER X</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">JOAILLERIE O'CO</span>
+<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">W2C</span>
+</div>
+</div>
+<div id="partners-blur-left" class="progressive-blur progressive-blur--left" aria-hidden="true"></div>
+<div id="partners-blur-right" class="progressive-blur progressive-blur--right" aria-hidden="true"></div>
 </div>
 </section>
 <!-- Section: Notre Histoire -->
@@ -1088,57 +1139,6 @@
 </div>
 </div>
 </section>
-<!-- Section: References — partner marquee with progressive blur -->
-<section id="references" class="py-20 md:py-32 border-y border-architectural-gray overflow-hidden" aria-label="Références">
-<h2 class="sr-only">Ils nous font confiance</h2>
-<div class="font-label-technical text-label-sm text-center text-on-surface-variant mb-10 md:mb-16 uppercase tracking-widest opacity-50" aria-hidden="true">Ils nous font confiance</div>
-<div class="partners-marquee scroll-reveal">
-<div class="partners-track">
-<div class="partners-group">
-<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">RT CONNECTING</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">MEILLEUR TAUX</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">ANDREW APP</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">WAKE UP</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">CAMPER X</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">JOAILLERIE O'CO</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">W2C</span>
-</div>
-<div class="partners-group" aria-hidden="true">
-<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">RT CONNECTING</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">MEILLEUR TAUX</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">ANDREW APP</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">WAKE UP</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">CAMPER X</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">JOAILLERIE O'CO</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tighter px-10 whitespace-nowrap">W2C</span>
-</div>
-</div>
-<div id="partners-blur-left" class="progressive-blur progressive-blur--left" aria-hidden="true"></div>
-<div id="partners-blur-right" class="progressive-blur progressive-blur--right" aria-hidden="true"></div>
-</div>
-</section>
-<!-- Section: Scroll-expansion cinematic reveal (ScrollExpandMedia, adapted) -->
-<section id="expand-section" class="expand-section">
-<div class="expand-sticky">
-<div class="expand-bg"></div>
-<div id="expand-media" class="expand-media" style="width:360px;height:440px;border-radius:16px">
-<img class="expand-img" src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Salle de cinéma — métaphore du storytelling publicitaire Kingdom Ads" width="1600" height="900" loading="lazy" decoding="async" onerror="this.style.display='none'"/>
-<div id="expand-media-overlay" class="expand-media-overlay" style="opacity:0.55"></div>
-<div id="expand-caption" class="expand-caption" style="opacity:0">
-<div class="font-label-technical text-label-technical text-secondary mb-4 uppercase tracking-widest">15 // 16</div>
-<p class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase">Tout commence par une histoire.</p>
-</div>
-</div>
-<h2 class="expand-title" aria-label="Filmer une histoire">
-<span id="expand-word-left" class="expand-word">FILMER</span>
-<span id="expand-word-right" class="expand-word">UNE HISTOIRE</span>
-</h2>
-<div id="expand-hint" class="expand-hint font-label-technical text-label-technical text-on-surface-variant uppercase tracking-widest">
-<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5l6 6 6-6M6 13l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-Défilez pour dévoiler
-</div>
-</div>
-</section>
 <!-- Final CTA Section -->
 <section id="contact" class="py-24 md:py-48 px-margin-mobile md:px-margin-desktop border-b border-architectural-gray relative overflow-hidden text-center cta-gold-gradient" aria-labelledby="contact-title">
 <div class="absolute inset-0 blueprint-grid opacity-10 pointer-events-none" aria-hidden="true"></div>
@@ -1252,6 +1252,22 @@ Défilez pour dévoiler
             svg.setAttribute('fill', 'none');
             svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%';
 
+            // Hand-picked subset of paths that get a gold overlay drawn
+            // progressively with scroll. Each entry: (p, i) selects the path
+            // (i varies thickness/position, p mirrors the curve direction).
+            // goldAt = scroll progress (0–1) at which this trail starts being
+            // drawn — every trail finishes exactly at scroll = 1, so all
+            // five "arrive" at the bottom at the end of the hero scroll.
+            const GOLD_LINES = [
+                { p:  1, i: 32, goldAt: 0.00 },   // top-right, thickest, starts first
+                { p: -1, i: 24, goldAt: 0.06 },   // mid-left
+                { p:  1, i: 17, goldAt: 0.14 },   // centre
+                { p: -1, i:  9, goldAt: 0.22 },   // lower-left, thinner
+                { p:  1, i:  3, goldAt: 0.32 },   // very low, finest
+            ];
+            const goldKey = (p, i) => p + ':' + i;
+            const goldMap = new Map(GOLD_LINES.map(g => [goldKey(g.p, g.i), g]));
+
             const paths = [];
             for (const p of [1, -1]) {
                 for (let i = 0; i < 36; i++) {
@@ -1265,17 +1281,53 @@ Défilez pour dévoiler
                     pe.setAttribute('fill', 'none');
                     pe.style.visibility = 'hidden';
                     svg.appendChild(pe);
+
+                    // Only a handful of paths get the gold scroll-driven trail.
+                    let goldPath = null;
+                    let goldAt = -1;
+                    const sel = goldMap.get(goldKey(p, i));
+                    let goldBaseW = 0, goldPulse = null;
+                    if (sel) {
+                        goldAt = sel.goldAt;
+                        goldBaseW = baseW + 1.1;     // finer than before
+                        // 1) Steady trail — length grows with scroll
+                        goldPath = document.createElementNS(NS, 'path');
+                        goldPath.setAttribute('d', pathD(i, p));
+                        goldPath.setAttribute('stroke', '#e9c349');
+                        goldPath.setAttribute('stroke-width', goldBaseW.toFixed(2));
+                        goldPath.setAttribute('stroke-linecap', 'round');
+                        goldPath.setAttribute('stroke-linejoin', 'round');
+                        goldPath.setAttribute('fill', 'none');
+                        goldPath.style.opacity = '0';
+                        svg.appendChild(goldPath);
+
+                        // 2) Bright "comet" pulse — slides back and forth
+                        //    inside the drawn portion so the trail stays alive
+                        goldPulse = document.createElementNS(NS, 'path');
+                        goldPulse.setAttribute('d', pathD(i, p));
+                        goldPulse.setAttribute('stroke', '#ffe088');
+                        goldPulse.setAttribute('stroke-width', (goldBaseW + 0.5).toFixed(2));
+                        goldPulse.setAttribute('stroke-linecap', 'round');
+                        goldPulse.setAttribute('fill', 'none');
+                        goldPulse.style.opacity = '0';
+                        svg.appendChild(goldPulse);
+                    }
+
                     paths.push({
                         pe,
+                        goldPath,
+                        goldPulse,
+                        goldBaseW,
                         len: 0,
                         baseW: baseW,
                         baseOp: baseOp,
                         dur: 42 + ((i * 6.4811) % 22),        // 42–64s — slow idle drift
                         phase: (i * 0.2741 + (p < 0 ? 0.5 : 0)) % 1,
-                        // every 3rd path can turn gold; the rest stay white.
-                        // goldAt = scroll point (0–1) where it starts blending; -1 = never.
-                        goldAt: (i % 3 === 2) ? (i / 36) * 0.8 : -1,
-                        goldMix: -1                           // cached white→gold blend
+                        // Pulse runs ~4s per traverse — slow enough to feel like
+                        // a current, fast enough to read as "moving".
+                        pulseDur: 3.6 + ((i * 0.317) % 1.8),
+                        goldAt,
+                        lastDraw: -1,        // cache → skip identical DOM writes
                     });
                 }
             }
@@ -1290,12 +1342,29 @@ Défilez pour dévoiler
                     o.pe.style.visibility = '';
                 }
 
-                // Scroll progress across the hero: 0 at top → 1 after one viewport
+                // Scroll progress measured relative to the hero section itself
+                // (it's no longer at the top of the page, so window.scrollY isn't
+                // a valid signal). 0 = hero top reaches viewport top; 1 = hero
+                // has been scrolled past by one viewport height.
+                const hero = document.getElementById('hero');
                 let scrollTarget = 0, scrollSmooth = 0;
+                // Small head-start so the first gold line is already nascent
+                // as the user settles on the hero (instead of having to scroll
+                // before *anything* happens). 0 = no lead, 0.2 = animation
+                // starts 20% of heroH before the section reaches the top.
+                const LEAD = 0.12;
                 const updateScroll = () => {
-                    scrollTarget = Math.min(window.scrollY / window.innerHeight, 1);
+                    if (!hero) { scrollTarget = 0; return; }
+                    const rect = hero.getBoundingClientRect();
+                    const heroH = rect.height || window.innerHeight || 1;
+                    // progress = 0 when rect.top = LEAD * heroH (hero almost
+                    // fully visible); progress = 1 when rect.top = -heroH
+                    // (hero scrolled past). Total span = (1 + LEAD) * heroH.
+                    scrollTarget = Math.max(0, Math.min(
+                        (LEAD * heroH - rect.top) / ((1 + LEAD) * heroH), 1));
                 };
                 window.addEventListener('scroll', updateScroll, { passive: true });
+                window.addEventListener('resize', updateScroll, { passive: true });
                 updateScroll();
                 scrollSmooth = scrollTarget;
 
@@ -1303,39 +1372,82 @@ Défilez pour dévoiler
                 // Smooth 0→1→0 curve — value + slope match at the cycle wrap, so no snap
                 const wave = c => (1 - Math.cos(c * TAU)) / 2;
 
+                // Smooth easing for the gold trail front so it doesn't pop in
+                // ("ease-out-cubic" — quick at first, decelerating). Looks far
+                // more "drawn by a pen" than a linear fill.
+                const easeDraw = x => 1 - Math.pow(1 - x, 3);
+
                 function frame(t) {
                     const time = t / 1000;
-                    // ease the scroll value so fast scrolls never snap the paths
+                    // Gold paths track scroll *directly* (no easing on input) so
+                    // the trail length is welded to the user's finger / wheel.
+                    const draw0 = scrollTarget;
+                    // White breathing keeps its smoothing — looks calmer.
                     scrollSmooth += (scrollTarget - scrollSmooth) * 0.08;
 
                     for (let k = 0; k < paths.length; k++) {
                         const o = paths[k], L = o.len;
-                        // constant base speed — time drift only, no scroll acceleration
+                        // White path: constant base-speed breathing (unchanged)
                         const cycle = (time / o.dur + o.phase) % 1;
                         const w = wave(cycle);
                         const pathLength = 0.3 + 0.7 * w;   // 0.3  → 1    → 0.3
                         const pathOffset = w;               // 0    → 1    → 0
                         o.pe.setAttribute('stroke-dasharray', (pathLength * L).toFixed(1) + ' ' + L.toFixed(1));
                         o.pe.setAttribute('stroke-dashoffset', (-pathOffset * L).toFixed(1));
+                        o.pe.style.opacity = (0.22 + 0.26 * w).toFixed(3);
 
-                        let opacity = 0.22 + 0.26 * w;      // faint white breathing
-                        // Gold-on-scroll: goldable paths light up in #e9c349 as the hero scrolls —
-                        // they go saturated gold, thicker and far more opaque so they clearly stand out.
-                        if (o.goldAt >= 0) {
-                            const mix = Math.max(0, Math.min(1, (scrollSmooth - o.goldAt) / 0.12));
-                            if (mix !== o.goldMix) {
-                                o.goldMix = mix;
-                                const r = Math.round(255 - 22  * mix); // 255 → 233
-                                const g = Math.round(255 - 60  * mix); // 255 → 195
-                                const b = Math.round(255 - 182 * mix); // 255 →  73
-                                o.pe.setAttribute('stroke', 'rgb(' + r + ',' + g + ',' + b + ')');
-                                o.pe.setAttribute('stroke-width', (o.baseW + 1.6 * mix).toFixed(2));
-                                o.pe.setAttribute('stroke-opacity', (o.baseOp + (0.95 - o.baseOp) * mix).toFixed(3));
+                        // Gold overlay — head position welded to scroll, while
+                        // a bright "comet" pulse slides inside the drawn area
+                        // to keep the trail alive. Per-path window = (1 -
+                        // goldAt) so every trail finishes exactly at scroll 1.
+                        if (o.goldPath) {
+                            const span = 1 - o.goldAt;
+                            const raw  = (draw0 - o.goldAt) / span;
+                            const draw = raw <= 0 ? 0 : raw >= 1 ? 1 : easeDraw(raw);
+                            const drawLen = draw * L;
+
+                            // (a) Steady trail — DOM write skipped on tiny diffs
+                            if (Math.abs(draw - o.lastDraw) > 0.0015) {
+                                o.lastDraw = draw;
+                                if (draw > 0) {
+                                    o.goldPath.setAttribute('stroke-dasharray',
+                                        drawLen.toFixed(1) + ' ' + L.toFixed(1));
+                                    o.goldPath.style.opacity =
+                                        Math.min(1, draw * 8).toFixed(3);
+                                } else {
+                                    o.goldPath.style.opacity = '0';
+                                }
                             }
-                            // lift the breathing opacity so lit gold lines stay clearly visible
-                            opacity = opacity * (1 - o.goldMix) + (0.65 + 0.35 * w) * o.goldMix;
+
+                            // (b) Comet pulse — short bright segment that
+                            //     bounces 0 → drawLen → 0 every pulseDur sec
+                            if (o.goldPulse) {
+                                if (drawLen > 18) {
+                                    const pulseLen = Math.min(60, drawLen * 0.18);
+                                    const range = Math.max(1, drawLen - pulseLen);
+                                    const cyc = (time / o.pulseDur + o.phase) % 2;
+                                    const pos = (cyc < 1 ? cyc : 2 - cyc) * range;
+                                    // Soft ease at the bounce endpoints so the
+                                    // pulse "settles" instead of bouncing hard
+                                    const edge = 0.12;
+                                    const t01 = pos / range;
+                                    const fade = t01 < edge
+                                        ? t01 / edge
+                                        : t01 > (1 - edge)
+                                            ? (1 - t01) / edge
+                                            : 1;
+                                    o.goldPulse.setAttribute('stroke-dasharray',
+                                        pulseLen.toFixed(1) + ' ' + L.toFixed(1));
+                                    o.goldPulse.setAttribute('stroke-dashoffset',
+                                        (-pos).toFixed(1));
+                                    o.goldPulse.style.opacity =
+                                        (Math.min(1, draw * 6) * (0.55 + 0.45 * fade))
+                                        .toFixed(3);
+                                } else if (o.goldPulse.style.opacity !== '0') {
+                                    o.goldPulse.style.opacity = '0';
+                                }
+                            }
                         }
-                        o.pe.style.opacity = opacity.toFixed(3);
                     }
                     requestAnimationFrame(frame);
                 }
