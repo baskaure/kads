@@ -3,7 +3,10 @@
     "allow": [
       "Bash(cmd *)",
       "PowerShell(Start-Process \"C:\\\\Users\\\\maitr\\\\Desktop\\\\sites\\\\kads\\\\kads\\\\index.html\")",
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "Bash(awk '{print length, $0}')",
+      "Bash(awk ' *)",
+      "Bash(mv /tmp/_kads_tmp.html \"/home/aurelien/Documents/sites/pub kads/kads/index.html\")"
     ]
   }
 }

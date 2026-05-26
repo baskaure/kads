@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* All custom styles live in index.html's <style> block today.
+   Move them here progressively if you want full preflight + autoprefixing. */
