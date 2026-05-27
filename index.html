@@ -328,6 +328,12 @@
             position: absolute;
             top: 50%;
             left: 50%;
+            /* Initial dimensions — kept here (not just inline) so the very
+               first paint, before the scroll-linked JS sets inline width/height,
+               already respects the viewport on narrow phones. */
+            width: 240px;
+            height: 320px;
+            border-radius: 16px;
             transform: translate(-50%, -50%);
             overflow: hidden;
             z-index: 10;
@@ -335,6 +341,12 @@
             box-shadow: 0 0 0 1px rgba(233, 195, 73, 0.3),
                         0 30px 90px rgba(0, 0, 0, 0.7);
             will-change: width, height;
+        }
+        @media (min-width: 768px) {
+            .expand-media {
+                width: 360px;
+                height: 440px;
+            }
         }
         .expand-img {
             display: block;
@@ -375,6 +387,8 @@
             flex-direction: column;
             align-items: center;
             gap: 6px;
+            padding: 0 16px;
+            max-width: 100vw;
             pointer-events: none;
             white-space: nowrap;
         }
@@ -386,6 +400,7 @@
             font-size: clamp(40px, 8.5vw, 104px);
             color: #ffffff;
             will-change: transform;
+            max-width: 100%;
         }
         .expand-hint {
             position: absolute;
@@ -396,6 +411,8 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            white-space: nowrap;
+            font-size: clamp(10px, 2.6vw, 12px);
         }
         .expand-hint .icon {
             width: 18px;
@@ -550,8 +567,20 @@
             .flip-card-inner { min-height: 380px; }
             /* Process gold-line head only visible at md+, just to be safe */
             .process-gold-line { display: none; }
-            /* Expand section: cap title to prevent horizontal overflow */
-            .expand-word { font-size: clamp(36px, 11vw, 64px); }
+            /* Expand section — mobile-only refinements:
+               - shorter section so the pinned scroll doesn't feel endless
+               - tighter font + letter-spacing so "VOTRE HISTOIRE" never
+                 reaches the viewport edge on phones as narrow as 320px
+               - smaller gap between the two stacked words
+               - hint sits closer to the bottom + smaller icon */
+            .expand-section { height: 200vh; }
+            .expand-title { gap: 2px; padding: 0 12px; }
+            .expand-word {
+                font-size: clamp(26px, 8vw, 48px);
+                letter-spacing: -0.035em;
+            }
+            .expand-hint { bottom: 24px; gap: 6px; }
+            .expand-hint .icon { width: 14px; height: 14px; }
         }
 
         /* Offset anchor jumps so the floating header doesn't cover section titles */
@@ -764,7 +793,7 @@
 <section id="expand-section" class="expand-section">
 <div class="expand-sticky">
 <div class="expand-bg"></div>
-<div id="expand-media" class="expand-media" style="width:360px;height:440px;border-radius:16px">
+<div id="expand-media" class="expand-media">
 <img class="expand-img" src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Salle de cinéma — métaphore du storytelling publicitaire Kingdom Ads" width="1600" height="900" loading="lazy" decoding="async" onerror="this.style.display='none'"/>
 <div id="expand-media-overlay" class="expand-media-overlay" style="opacity:0.55"></div>
 <div id="expand-caption" class="expand-caption" style="opacity:0">
@@ -1632,8 +1661,11 @@ Défilez pour dévoiler
                 overlay.style.opacity = (0.55 - p * 0.35).toFixed(3);
                 bg.style.opacity = (1 - p).toFixed(3);
 
-                // title words split apart, then fade out
-                const dx = (mobile ? 78 : 60) * p;
+                // title words split apart, then fade out — the per-axis push
+                // is tuned to viewport width so each word leaves the screen at
+                // p≈0.7 regardless of phone size; the rest of the scroll is
+                // pure fade-out + media reveal.
+                const dx = (mobile ? 55 : 60) * p;
                 wordL.style.transform = 'translateX(-' + dx + 'vw)';
                 wordR.style.transform = 'translateX(' + dx + 'vw)';
                 title.style.opacity = clamp(1 - (p - 0.2) / 0.35, 0, 1).toFixed(3);
