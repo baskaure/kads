@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Merci — Kingdom Ads</title>
+<meta name="description" content="Merci pour votre prise de rendez-vous avec Kingdom Ads."/>
+<meta name="robots" content="noindex, nofollow"/>
+<meta name="theme-color" content="#030303"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="/favicon.ico" sizes="any"/>
+<link rel="mask-icon" href="/favicon.svg" color="#e9c349"/>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"/>
+
+<!-- Meta Pixel Code (post-inscription : PageView + Lead) -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2073138586484176');
+fbq('track', 'PageView');
+fbq('track', 'Lead');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: Montserrat, sans-serif;
+    background: #030303;
+    color: #e2e2e2;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .label-tech {
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.72rem;
+  }
+
+  /* ====== Hero géométrique (réplique CSS de shape-landing-hero) ====== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #030303;
+  }
+  /* Voile dégradé doré diffus */
+  .hero__wash {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(233, 195, 73, 0.06) 0%, transparent 50%, rgba(212, 175, 55, 0.06) 100%);
+    filter: blur(64px);
+    pointer-events: none;
+  }
+  /* Vignette haut/bas pour fondre les formes */
+  .hero__vignette {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, #030303 0%, transparent 50%, rgba(3, 3, 3, 0.8) 100%);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .shapes { position: absolute; inset: 0; overflow: hidden; }
+
+  /* Une forme : intro (slide + rotate + fade) sur le wrapper, flottement sur l'enfant */
+  .shape {
+    position: absolute;
+    opacity: 0;
+    animation: shapeIn 2.4s cubic-bezier(0.23, 0.86, 0.39, 0.96) forwards;
+    animation-delay: var(--delay, 0s);
+  }
+  .shape__float { position: relative; animation: floatY 12s ease-in-out infinite; }
+  .shape__pill {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: linear-gradient(to right, var(--g, rgba(255,255,255,0.08)), transparent);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.10);
+  }
+  .shape__pill::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2), transparent 70%);
+  }
+
+  @keyframes shapeIn {
+    0%   { opacity: 0; transform: translateY(-150px) rotate(calc(var(--rot, 0deg) - 15deg)); }
+    100% { opacity: 1; transform: translateY(0) rotate(var(--rot, 0deg)); }
+  }
+  @keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(15px); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ====== Contenu ====== */
+  .content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 96px 24px;
+    text-align: center;
+  }
+  .fade { opacity: 0; animation: fadeUp 1s cubic-bezier(0.25, 0.4, 0.25, 1) forwards; }
+  .d0 { animation-delay: 0.4s; }
+  .d1 { animation-delay: 0.6s; }
+  .d2 { animation-delay: 0.8s; }
+  .d3 { animation-delay: 1.0s; }
+  .d4 { animation-delay: 1.2s; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    background: rgba(233, 195, 73, 0.06);
+    border: 1px solid rgba(233, 195, 73, 0.25);
+    margin-bottom: 32px;
+  }
+  .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #e9c349; box-shadow: 0 0 10px rgba(233,195,73,0.8); }
+  .badge span { color: rgba(255, 255, 255, 0.7); }
+
+  .title {
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+  .title .l1 {
+    background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0.8));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .title .l2 {
+    background: linear-gradient(to right, #f3d27a, #ffffff 55%, #e9c349);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  .lead {
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    line-height: 1.7;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 540px;
+    margin: 0 auto 16px;
+  }
+  .lead strong { color: rgba(255, 255, 255, 0.9); font-weight: 500; }
+  .sign { color: #e9c349; font-weight: 500; margin-top: 8px; }
+
+  .divider { width: 64px; height: 1px; background: rgba(255, 255, 255, 0.12); margin: 44px auto; }
+
+  .socials-title { color: rgba(255, 255, 255, 0.85); font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
+  .socials-sub { color: rgba(255, 255, 255, 0.4); font-size: 0.92rem; margin-bottom: 22px; }
+  .socials { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; max-width: 620px; margin: 0 auto; }
+  /* Cards glassmorphism */
+  .social-card {
+    display: flex; flex-direction: column; align-items: center; gap: 11px;
+    width: 108px; padding: 20px 12px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.80);
+    text-decoration: none;
+    transition: transform 0.28s, border-color 0.28s, background 0.28s, box-shadow 0.28s, color 0.28s;
+  }
+  .social-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(233, 195, 73, 0.55);
+    background: rgba(233, 195, 73, 0.07);
+    box-shadow: 0 14px 38px rgba(233, 195, 73, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+  }
+  .social-card .ic {
+    width: 46px; height: 46px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    color: #ffffff;
+    transition: background 0.28s, transform 0.28s;
+  }
+  .social-card:hover .ic { background: rgba(233, 195, 73, 0.16); transform: scale(1.06); }
+  .social-card .ic svg { width: 24px; height: 24px; display: block; }
+  .social-card .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem; letter-spacing: 0.10em; text-transform: uppercase;
+  }
+  @media (max-width: 520px) { .social-card { width: calc(33.333% - 10px); } }
+
+  .home-btn {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 15px 36px;
+    background: #e9c349;
+    color: #131313;
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem;
+    border-radius: 3px;
+    transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .home-btn:hover { opacity: 0.95; transform: scale(0.98); box-shadow: 0 0 24px rgba(233, 195, 73, 0.35); }
+
+  .top-logo {
+    position: absolute; top: 22px; left: 24px; z-index: 20;
+    font-weight: 700; letter-spacing: -0.02em; color: #fff; text-decoration: none; font-size: 1rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .shape, .shape__float, .fade { animation: none !important; opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+<section class="hero">
+<a class="top-logo" href="/">KINGDOM ADS</a>
+
+<div class="hero__wash"></div>
+
+<div class="shapes" aria-hidden="true">
+  <div class="shape" style="--rot:12deg; --delay:0.3s; left:-10%; top:18%;">
+    <div class="shape__float" style="width:600px; height:140px;">
+      <div class="shape__pill" style="--g: rgba(233,195,73,0.15);"></div>
+    </div>
+  </div>
+  <div class="shape" style="--rot:-15deg; --delay:0.5s; right:-5%; top:72%;">
+    <div class="shape__float" style="width:500px; height:120px;">
+      <div class="shape__pill" style="--g: rgba(212,175,55,0.15);"></div>
+    </div>
+  </div>
+  <div class="shape" style="--rot:-8deg; --delay:0.4s; left:6%; bottom:8%;">
+    <div class="shape__float" style="width:300px; height:80px;">
+      <div class="shape__pill" style="--g: rgba(255,255,255,0.10);"></div>
+    </div>
+  </div>
+  <div class="shape" style="--rot:20deg; --delay:0.6s; right:16%; top:12%;">
+    <div class="shape__float" style="width:200px; height:60px;">
+      <div class="shape__pill" style="--g: rgba(245,200,90,0.16);"></div>
+    </div>
+  </div>
+  <div class="shape" style="--rot:-25deg; --delay:0.7s; left:22%; top:7%;">
+    <div class="shape__float" style="width:150px; height:40px;">
+      <div class="shape__pill" style="--g: rgba(200,169,110,0.15);"></div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="badge fade d0 label-tech">
+    <span class="dot"></span>
+    <span>Rendez-vous confirmé</span>
+  </div>
+
+  <h1 class="title fade d1">
+    <span class="l1">Merci pour</span><br/>
+    <span class="l2">votre confiance</span>
+  </h1>
+
+  <p class="lead fade d2">
+    Votre rendez-vous est <strong>bien enregistré</strong>. On revient vers vous très vite
+    pour valider ensemble les informations transmises.
+  </p>
+  <p class="lead fade d2">
+    Un <strong>e-mail récapitulatif</strong> vient de partir avec tous les détails de notre prochain échange.
+  </p>
+  <p class="lead sign fade d2">À très vite — l'équipe Kingdom Ads.</p>
+
+  <div class="divider fade d3"></div>
+
+  <div class="fade d3">
+    <div class="socials-title">Restons connectés</div>
+    <div class="socials-sub">On partage aussi nos meilleurs conseils marketing sur nos réseaux.</div>
+    <div class="socials">
+      <a class="social-card" href="https://www.instagram.com/les_marketwins/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></span>
+        <span class="lbl">Instagram</span>
+      </a>
+      <a class="social-card" href="https://www.facebook.com/AlexnWillTwins/?locale=fr_FR" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></span>
+        <span class="lbl">Facebook</span>
+      </a>
+      <a class="social-card" href="https://www.linkedin.com/in/alexandre-adamsha/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+        <span class="lbl">LinkedIn</span>
+      </a>
+      <a class="social-card" href="https://www.tiktok.com/@les_marketwins" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></span>
+        <span class="lbl">TikTok</span>
+      </a>
+      <a class="social-card" href="https://www.youtube.com/channel/UC7FBCfVXneDcjNAVHDj7zyw" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></span>
+        <span class="lbl">YouTube</span>
+      </a>
+    </div>
+  </div>
+
+  <a class="home-btn fade d4" href="/">Retour à l'accueil</a>
+</div>
+
+<div class="hero__vignette"></div>
+</section>
+</body>
+</html>

@@ -2005,8 +2005,9 @@ Défilez pour dévoiler
                 }
             }
 
-            // Meta Pixel "Lead" — déclenché une fois le RDV confirmé (idempotent)
-            var leadTracked = false;
+            // Une fois le RDV confirmé : redirection vers la page de remerciement
+            // (/remerciement), qui porte le pixel "Lead" (post-inscription).
+            var redirected = false;
             function isCalendlyEvent(e) {
                 return e.origin && e.origin.indexOf('calendly.com') > -1
                     && e.data && typeof e.data.event === 'string'
@@ -2014,8 +2015,9 @@ Défilez pour dévoiler
             }
             window.addEventListener('message', function (e) {
                 if (!isCalendlyEvent(e)) return;
-                if (e.data.event === 'calendly.event_scheduled' && !leadTracked) {
-                    if (typeof window.fbq === 'function') { window.fbq('track', 'Lead'); leadTracked = true; }
+                if (e.data.event === 'calendly.event_scheduled' && !redirected) {
+                    redirected = true;
+                    window.location.href = '/remerciement';
                 }
             });
         })();

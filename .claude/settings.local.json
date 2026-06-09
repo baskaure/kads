@@ -12,7 +12,9 @@
       "Bash(curl -s \"https://calendly.com/agence-kingdomads/obtenir-des-prospects-premium?hide_gdpr_banner=1\" -o mw.html)",
       "Bash(curl -s \"https://calendly.com/agence-kingdomads/appel-strategie-acquisition-rdv-avec-les-marketwins?hide_gdpr_banner=1\" -o kads.html)",
       "Bash(grep -oiE \"\\(background|main_color|text_color|color\\)[\\\\\"']?\\\\s*[:=]\\\\s*[\\\\\"']?#?[0-9a-fA-F]{3,8}\" mw.html)",
-      "Bash(grep -oiE \"\\(background|main_color|text_color|color\\)[\\\\\"']?\\\\s*[:=]\\\\s*[\\\\\"']?#?[0-9a-fA-F]{3,8}\" kads.html)"
+      "Bash(grep -oiE \"\\(background|main_color|text_color|color\\)[\\\\\"']?\\\\s*[:=]\\\\s*[\\\\\"']?#?[0-9a-fA-F]{3,8}\" kads.html)",
+      "Bash(grep -nA4 \"content:\" tailwind.config.js)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8765/remerciement.html)"
     ]
   }
 }

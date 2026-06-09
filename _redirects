@@ -6,6 +6,9 @@
 /home                    /                          301
 /accueil                 /                          301
 
+# Page de remerciement (URL propre) — servie AVANT le fallback SPA
+/remerciement            /remerciement.html         200
+
 # SPA fallback (au cas où des routes inexistantes seraient demandées,
 # on revient à l'accueil plutôt qu'un 404 par défaut)
 /*                       /index.html                200
