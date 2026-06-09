@@ -239,6 +239,30 @@ src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscrip
     font-weight: 700; letter-spacing: -0.02em; color: #fff; text-decoration: none; font-size: 1rem;
   }
 
+  /* ====== Responsive ====== */
+  /* Tablette : on réduit l'échelle des formes de fond pour éviter le débordement */
+  @media (max-width: 900px) {
+    .shapes { transform: scale(0.75); transform-origin: 50% 42%; }
+  }
+  @media (max-width: 768px) {
+    .content { padding: 80px 20px; }
+    /* Les formes sont rétrécies et resserrées : décor discret, pas d'encombrement */
+    .shapes { transform: scale(0.58); transform-origin: 50% 40%; }
+    .hero__wash { filter: blur(48px); }
+    .top-logo { top: 16px; left: 18px; font-size: 0.92rem; }
+  }
+  @media (max-width: 520px) {
+    .content { padding: 72px 16px; }
+    .shapes { transform: scale(0.46); transform-origin: 50% 38%; }
+    .social-card { width: calc(33.333% - 10px); padding: 16px 8px; }
+    .social-card .ic { width: 42px; height: 42px; }
+    .badge { margin-bottom: 24px; }
+    .divider { margin: 34px auto; }
+  }
+  @media (max-width: 360px) {
+    .social-card { width: calc(50% - 8px); }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .shape, .shape__float, .fade { animation: none !important; opacity: 1 !important; transform: none !important; }
   }

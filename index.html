@@ -69,67 +69,6 @@
      (au clic / à l'approche du widget inline) via le loader en bas de page. -->
 <link rel="preconnect" href="https://assets.calendly.com" crossorigin=""/>
 <style>
-  /* ---- Calendly inline embed — réplique exacte de market-refonte ---- */
-  /* Lumière intense projetée derrière le Calendly */
-  .calendly-wrapper {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  /* Conteneur de l'embed inline Calendly.
-     NB : on n'utilise PAS la classe `calendly-inline-widget` ici, sinon le
-     widget.js de Calendly auto-initialise l'élément au chargement et lit un
-     `data-url` absent → `Cannot read properties of null (reading 'split')`,
-     ce qui empêche `window.Calendly` d'être défini. On initialise nous-mêmes
-     via initInlineWidget({ parentElement }). */
-  .calendly-inline-host {
-    position: relative;
-    z-index: 2;
-  }
-
-  /* Glow principal qui se projette depuis le haut */
-  .calendly-wrapper::before {
-    content: "";
-    position: absolute;
-    top: -20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 105%;
-    height: 80%;
-    background: radial-gradient(
-      ellipse at center top,
-      rgba(212, 175, 55, 0.55) 0%,
-      rgba(212, 175, 55, 0.35) 25%,
-      rgba(212, 175, 55, 0.15) 50%,
-      transparent 70%
-    );
-    filter: blur(70px);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Cœur de lumière plus intense */
-  .calendly-wrapper::after {
-    content: "";
-    position: absolute;
-    top: -5%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    height: 50%;
-    background: radial-gradient(
-      ellipse at center top,
-      rgba(255, 220, 150, 0.7) 0%,
-      rgba(212, 175, 55, 0.4) 30%,
-      transparent 60%
-    );
-    filter: blur(40px);
-    mix-blend-mode: plus-lighter;
-    pointer-events: none;
-    z-index: 0;
-  }
-
   /* ---- Popup Calendly : voile sombre flouté derrière + cadre raccordé au widget ---- */
   /* On floute/assombrit l'arrière-plan de la page derrière le popup */
   .calendly-overlay {
@@ -1278,10 +1217,6 @@ Défilez pour dévoiler
                     PRENDRE RDV
                 </a>
 </div>
-<!-- Calendly inline embed (réplique market-refonte) -->
-<div class="calendly-wrapper mb-12 md:mb-16">
-<div id="calendly-inline-host" class="calendly-inline-host" style="min-width:320px;height:700px"></div>
-</div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 text-center border-t border-on-secondary/30 pt-10 md:pt-12">
 <div>
 <p class="font-label-technical text-label-sm text-on-secondary/70 mb-2">FOUNDER // STRATEGY</p>
@@ -1977,33 +1912,6 @@ Défilez pour dévoiler
             document.querySelectorAll('a[href*="calendly.com"]').forEach(function (link) {
                 link.addEventListener('click', function (e) { e.preventDefault(); openCalendly(); });
             });
-
-            // Embed inline dans la section #contact — chargé à l'approche du viewport
-            var host = document.getElementById('calendly-inline-host');
-            if (host) {
-                var mountInline = function () {
-                    loadCalendly().then(function (Calendly) {
-                        if (!Calendly || !host || host.querySelector('iframe')) return;
-                        requestAnimationFrame(function () {
-                            requestAnimationFrame(function () {
-                                if (!host || host.querySelector('iframe')) return;
-                                Calendly.initInlineWidget({ url: getCalendlyUrl(), parentElement: host });
-                            });
-                        });
-                    }).catch(function (e) { console.error('Calendly inline widget failed to load', e); });
-                };
-                if (typeof IntersectionObserver === 'undefined') {
-                    mountInline();
-                } else {
-                    var observer = new IntersectionObserver(function (entries) {
-                        if (entries.some(function (en) { return en.isIntersecting; })) {
-                            observer.disconnect();
-                            mountInline();
-                        }
-                    }, { rootMargin: '600px' });
-                    observer.observe(host);
-                }
-            }
 
             // Une fois le RDV confirmé : redirection vers la page de remerciement
             // (/remerciement), qui porte le pixel "Lead" (post-inscription).
