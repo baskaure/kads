@@ -65,6 +65,109 @@
 <link rel="dns-prefetch" href="https://images.unsplash.com"/>
 <link rel="preload" as="image" href="input/alex-800.webp" fetchpriority="high"/>
 
+<!-- Calendly : préconnexion seulement. Le CSS et le JS sont chargés à la demande
+     (au clic / à l'approche du widget inline) via le loader en bas de page. -->
+<link rel="preconnect" href="https://assets.calendly.com" crossorigin=""/>
+<style>
+  /* ---- Calendly inline embed — réplique exacte de market-refonte ---- */
+  /* Lumière intense projetée derrière le Calendly */
+  .calendly-wrapper {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* Conteneur de l'embed inline Calendly.
+     NB : on n'utilise PAS la classe `calendly-inline-widget` ici, sinon le
+     widget.js de Calendly auto-initialise l'élément au chargement et lit un
+     `data-url` absent → `Cannot read properties of null (reading 'split')`,
+     ce qui empêche `window.Calendly` d'être défini. On initialise nous-mêmes
+     via initInlineWidget({ parentElement }). */
+  .calendly-inline-host {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Glow principal qui se projette depuis le haut */
+  .calendly-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 105%;
+    height: 80%;
+    background: radial-gradient(
+      ellipse at center top,
+      rgba(212, 175, 55, 0.55) 0%,
+      rgba(212, 175, 55, 0.35) 25%,
+      rgba(212, 175, 55, 0.15) 50%,
+      transparent 70%
+    );
+    filter: blur(70px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Cœur de lumière plus intense */
+  .calendly-wrapper::after {
+    content: "";
+    position: absolute;
+    top: -5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 50%;
+    background: radial-gradient(
+      ellipse at center top,
+      rgba(255, 220, 150, 0.7) 0%,
+      rgba(212, 175, 55, 0.4) 30%,
+      transparent 60%
+    );
+    filter: blur(40px);
+    mix-blend-mode: plus-lighter;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ---- Popup Calendly : voile sombre flouté derrière + cadre raccordé au widget ---- */
+  /* On floute/assombrit l'arrière-plan de la page derrière le popup */
+  .calendly-overlay {
+    background: rgba(0, 0, 0, 0.6) !important;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  /* Le « fond blanc » du popup n'est pas supprimable (iframe cross-origin) : on le
+     met à la couleur du widget (#131313) pour qu'il se fonde, + coins arrondis. */
+  .calendly-overlay .calendly-popup,
+  .calendly-overlay .calendly-popup-content {
+    background: #131313 !important;
+    box-shadow: none !important;
+  }
+  .calendly-overlay .calendly-popup-content {
+    border-radius: 14px;
+    overflow: hidden;
+  }
+</style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2073138586484176');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 <!-- Google Fonts — non-blocking pattern (preload + media swap) -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"/>
 <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"/>
@@ -1175,6 +1278,10 @@ Défilez pour dévoiler
                     PRENDRE RDV
                 </a>
 </div>
+<!-- Calendly inline embed (réplique market-refonte) -->
+<div class="calendly-wrapper mb-12 md:mb-16">
+<div id="calendly-inline-host" class="calendly-inline-host" style="min-width:320px;height:700px"></div>
+</div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 text-center border-t border-on-secondary/30 pt-10 md:pt-12">
 <div>
 <p class="font-label-technical text-label-sm text-on-secondary/70 mb-2">FOUNDER // STRATEGY</p>
@@ -1234,6 +1341,7 @@ Défilez pour dévoiler
 </div>
 </div>
 </footer>
+
 <script>
         // Intersection Observer for scroll animations
         const observerOptions = {
@@ -1767,6 +1875,149 @@ Défilez pour dévoiler
             window.addEventListener('scroll', onScroll, { passive: true });
             window.addEventListener('resize', onScroll);
             update();
+        })();
+
+        // ===== Calendly — réplique exacte de market-refonte =====
+        // (loadCalendly + getCalendlyUrl + openCalendly popup + embed inline + Lead)
+        (function () {
+            var CALENDLY_PATH = 'https://calendly.com/agence-kingdomads/appel-strategie-acquisition-rdv-avec-les-marketwins';
+            var CALENDLY_CSS = 'https://assets.calendly.com/assets/external/widget.css';
+            var CALENDLY_JS = 'https://assets.calendly.com/assets/external/widget.js';
+            var calendlyPromise = null;
+
+            // Couleurs du site appliquées au widget Calendly (sans toucher à la logique).
+            var CAL_THEME = {
+                background_color: '131313', // surface
+                text_color: 'e2e2e2',       // on-background
+                primary_color: 'e9c349'     // secondary / or
+            };
+
+            /** URL avec paramètres requis pour l'embed (popup + inline) + thème du site. */
+            function getCalendlyUrl() {
+                var params = 'hide_gdpr_banner=1'
+                    + '&background_color=' + CAL_THEME.background_color
+                    + '&text_color=' + CAL_THEME.text_color
+                    + '&primary_color=' + CAL_THEME.primary_color;
+                if (window.location && window.location.host) {
+                    params += '&embed_domain=' + encodeURIComponent(window.location.host);
+                }
+                return CALENDLY_PATH + '?' + params;
+            }
+
+            function ensureStylesheet() {
+                var existing = document.querySelector(
+                    'link[data-calendly], link[href*="calendly.com/assets/external/widget.css"]'
+                );
+                if (existing) {
+                    if (existing.sheet) return Promise.resolve();
+                    return new Promise(function (resolve) {
+                        existing.addEventListener('load', function () { resolve(); }, { once: true });
+                        existing.addEventListener('error', function () { resolve(); }, { once: true });
+                    });
+                }
+                return new Promise(function (resolve) {
+                    var link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.href = CALENDLY_CSS;
+                    link.dataset.calendly = 'true';
+                    link.addEventListener('load', function () { resolve(); }, { once: true });
+                    link.addEventListener('error', function () { resolve(); }, { once: true });
+                    document.head.appendChild(link);
+                });
+            }
+
+            function ensureScript() {
+                if (document.querySelector(
+                    'script[data-calendly], script[src*="assets.calendly.com/assets/external/widget.js"]'
+                )) return;
+                var script = document.createElement('script');
+                script.src = CALENDLY_JS;
+                script.async = true;
+                script.dataset.calendly = 'true';
+                document.body.appendChild(script);
+            }
+
+            function waitForCalendlyGlobal() {
+                return new Promise(function (resolve, reject) {
+                    var attempts = 0;
+                    var id = setInterval(function () {
+                        attempts += 1;
+                        if (window.Calendly) { clearInterval(id); resolve(window.Calendly); }
+                        else if (attempts >= 400) { clearInterval(id); reject(new Error('Calendly: window.Calendly introuvable')); }
+                    }, 50);
+                });
+            }
+
+            // On charge le CSS et le JS en parallèle, on ne résout qu'une fois
+            // les DEUX prêts (CSS appliqué + global Calendly disponible).
+            function loadCalendly() {
+                if (calendlyPromise) return calendlyPromise;
+                calendlyPromise = new Promise(function (resolve, reject) {
+                    var stylesheetReady = ensureStylesheet();
+                    ensureScript();
+                    var globalReady = window.Calendly
+                        ? Promise.resolve(window.Calendly)
+                        : waitForCalendlyGlobal();
+                    Promise.all([globalReady, stylesheetReady])
+                        .then(function (r) { resolve(r[0]); })
+                        .catch(function (err) { calendlyPromise = null; reject(err); });
+                });
+                return calendlyPromise;
+            }
+
+            function openCalendly() {
+                var url = getCalendlyUrl();
+                loadCalendly()
+                    .then(function (Calendly) { if (Calendly) Calendly.initPopupWidget({ url: url }); })
+                    .catch(function (e) { console.error('Calendly failed to load', e); });
+                return false;
+            }
+
+            // Tous les CTA Calendly ouvrent le popup (comme les boutons de market-refonte)
+            document.querySelectorAll('a[href*="calendly.com"]').forEach(function (link) {
+                link.addEventListener('click', function (e) { e.preventDefault(); openCalendly(); });
+            });
+
+            // Embed inline dans la section #contact — chargé à l'approche du viewport
+            var host = document.getElementById('calendly-inline-host');
+            if (host) {
+                var mountInline = function () {
+                    loadCalendly().then(function (Calendly) {
+                        if (!Calendly || !host || host.querySelector('iframe')) return;
+                        requestAnimationFrame(function () {
+                            requestAnimationFrame(function () {
+                                if (!host || host.querySelector('iframe')) return;
+                                Calendly.initInlineWidget({ url: getCalendlyUrl(), parentElement: host });
+                            });
+                        });
+                    }).catch(function (e) { console.error('Calendly inline widget failed to load', e); });
+                };
+                if (typeof IntersectionObserver === 'undefined') {
+                    mountInline();
+                } else {
+                    var observer = new IntersectionObserver(function (entries) {
+                        if (entries.some(function (en) { return en.isIntersecting; })) {
+                            observer.disconnect();
+                            mountInline();
+                        }
+                    }, { rootMargin: '600px' });
+                    observer.observe(host);
+                }
+            }
+
+            // Meta Pixel "Lead" — déclenché une fois le RDV confirmé (idempotent)
+            var leadTracked = false;
+            function isCalendlyEvent(e) {
+                return e.origin && e.origin.indexOf('calendly.com') > -1
+                    && e.data && typeof e.data.event === 'string'
+                    && e.data.event.indexOf('calendly.') === 0;
+            }
+            window.addEventListener('message', function (e) {
+                if (!isCalendlyEvent(e)) return;
+                if (e.data.event === 'calendly.event_scheduled' && !leadTracked) {
+                    if (typeof window.fbq === 'function') { window.fbq('track', 'Lead'); leadTracked = true; }
+                }
+            });
         })();
     </script>
 </body></html>
