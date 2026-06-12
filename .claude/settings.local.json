@@ -15,7 +15,11 @@
       "Bash(grep -oiE \"\\(background|main_color|text_color|color\\)[\\\\\"']?\\\\s*[:=]\\\\s*[\\\\\"']?#?[0-9a-fA-F]{3,8}\" kads.html)",
       "Bash(grep -nA4 \"content:\" tailwind.config.js)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8765/remerciement.html)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8765/index.html)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8765/index.html)",
+      "Bash(flatpak list *)",
+      "Bash(brave-browser --headless --disable-gpu --no-sandbox --hide-scrollbars --window-size=1440,900 --screenshot=/tmp/rem_desktop.png \"http://localhost:8765/remerciement.html\")",
+      "Bash(brave-browser --headless --disable-gpu --no-sandbox --hide-scrollbars --window-size=390,844 --screenshot=/tmp/rem_mobile.png \"http://localhost:8765/remerciement.html\")",
+      "Bash(ls -la /tmp/rem_desktop.png /tmp/rem_mobile.png)"
     ]
   }
 }

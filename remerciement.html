@@ -52,7 +52,6 @@ src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscrip
     font-size: 0.72rem;
   }
 
-  /* ====== Hero géométrique (réplique CSS de shape-landing-hero) ====== */
   .hero {
     position: relative;
     min-height: 100vh;
@@ -63,62 +62,78 @@ src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscrip
     overflow: hidden;
     background: #030303;
   }
-  /* Voile dégradé doré diffus */
-  .hero__wash {
+
+  /* ====== Fond géométrique flottant — repris de market-refonte ====== */
+  .hero-bg-root {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(233, 195, 73, 0.06) 0%, transparent 50%, rgba(212, 175, 55, 0.06) 100%);
-    filter: blur(64px);
+    width: 100%;
+    box-sizing: border-box;
     pointer-events: none;
+    z-index: 0;
   }
-  /* Vignette haut/bas pour fondre les formes */
-  .hero__vignette {
+  .hero-shapes { position: absolute; inset: 0; overflow: hidden; }
+  .hero-shapes-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), transparent 55%, rgba(184, 134, 11, 0.10));
+    filter: blur(40px);
+  }
+  .hero-shapes-vignette {
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, #030303 0%, transparent 50%, rgba(3, 3, 3, 0.8) 100%);
     pointer-events: none;
-    z-index: 5;
   }
-  .shapes { position: absolute; inset: 0; overflow: hidden; }
 
-  /* Une forme : intro (slide + rotate + fade) sur le wrapper, flottement sur l'enfant */
-  .shape {
+  .hero-shape {
     position: absolute;
     opacity: 0;
-    animation: shapeIn 2.4s cubic-bezier(0.23, 0.86, 0.39, 0.96) forwards;
-    animation-delay: var(--delay, 0s);
+    transform: translateY(-150px) rotate(calc(var(--rotate, 0deg) - 15deg));
+    animation: hero-shape-in 2.4s cubic-bezier(0.23, 0.86, 0.39, 0.96) var(--delay, 0s) forwards;
   }
-  .shape__float { position: relative; animation: floatY 12s ease-in-out infinite; }
-  .shape__pill {
-    position: absolute;
-    inset: 0;
-    border-radius: 9999px;
-    background: linear-gradient(to right, var(--g, rgba(255,255,255,0.08)), transparent);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.10);
+  @keyframes hero-shape-in {
+    from { opacity: 0; transform: translateY(-150px) rotate(calc(var(--rotate, 0deg) - 15deg)); }
+    to   { opacity: 1; transform: translateY(0) rotate(var(--rotate, 0deg)); }
   }
-  .shape__pill::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 9999px;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2), transparent 70%);
-  }
-
-  @keyframes shapeIn {
-    0%   { opacity: 0; transform: translateY(-150px) rotate(calc(var(--rot, 0deg) - 15deg)); }
-    100% { opacity: 1; transform: translateY(0) rotate(var(--rot, 0deg)); }
-  }
-  @keyframes floatY {
+  .hero-shape-inner { position: relative; animation: hero-shape-float 12s ease-in-out infinite; }
+  @keyframes hero-shape-float {
     0%, 100% { transform: translateY(0); }
     50%      { transform: translateY(15px); }
   }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
+  .hero-shape-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: linear-gradient(to right, var(--shape-gradient, rgba(212, 175, 55, 0.3)), transparent);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(212, 175, 55, 0.18);
   }
+  .hero-shape-inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.25), transparent 70%);
+  }
+
+  .hero-shape-1 { left: -5%;  top: 20%;    --rotate: 12deg;  --delay: 0.3s; }
+  .hero-shape-2 { right: 0%;  top: 75%;    --rotate: -15deg; --delay: 0.5s; }
+  .hero-shape-3 { left: 10%;  bottom: 10%; --rotate: -8deg;  --delay: 0.4s; }
+  .hero-shape-4 { right: 20%; top: 15%;    --rotate: 20deg;  --delay: 0.6s; }
+  .hero-shape-5 { left: 25%;  top: 10%;    --rotate: -25deg; --delay: 0.7s; }
+
+  .hero-shape-1 .hero-shape-inner { width: 600px; height: 140px; }
+  .hero-shape-2 .hero-shape-inner { width: 500px; height: 120px; }
+  .hero-shape-3 .hero-shape-inner { width: 300px; height: 80px; }
+  .hero-shape-4 .hero-shape-inner { width: 200px; height: 60px; }
+  .hero-shape-5 .hero-shape-inner { width: 150px; height: 40px; }
+
+  .hero-shape-3 .hero-shape-inner::before { background: linear-gradient(to right, rgba(184, 134, 11, 0.32), transparent); }
+  .hero-shape-5 .hero-shape-inner::before { background: linear-gradient(to right, rgba(240, 220, 130, 0.28), transparent); }
 
   /* ====== Contenu ====== */
   .content {
@@ -131,6 +146,7 @@ src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscrip
     text-align: center;
   }
   .fade { opacity: 0; animation: fadeUp 1s cubic-bezier(0.25, 0.4, 0.25, 1) forwards; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
   .d0 { animation-delay: 0.4s; }
   .d1 { animation-delay: 0.6s; }
   .d2 { animation-delay: 0.8s; }
@@ -138,42 +154,28 @@ src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscrip
   .d4 { animation-delay: 1.2s; }
 
   .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 14px;
-    border-radius: 9999px;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 9999px;
     background: rgba(233, 195, 73, 0.06);
     border: 1px solid rgba(233, 195, 73, 0.25);
     margin-bottom: 32px;
   }
-  .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #e9c349; box-shadow: 0 0 10px rgba(233,195,73,0.8); }
+  .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #e9c349; box-shadow: 0 0 10px rgba(233, 195, 73, 0.8); }
   .badge span { color: rgba(255, 255, 255, 0.7); }
 
   .title {
     font-size: clamp(2.4rem, 7vw, 5rem);
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
+    font-weight: 700; line-height: 1.05; letter-spacing: -0.02em;
     margin-bottom: 28px;
   }
-  .title .l1 {
-    background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0.8));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .title .l2 {
-    background: linear-gradient(to right, #f3d27a, #ffffff 55%, #e9c349);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
+  .title .l1 { background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0.8)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .title .l2 { background: linear-gradient(to right, #f3d27a, #ffffff 55%, #e9c349); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
   .lead {
     font-size: clamp(1rem, 2.2vw, 1.25rem);
-    line-height: 1.7;
-    font-weight: 300;
-    letter-spacing: 0.01em;
+    line-height: 1.7; font-weight: 300; letter-spacing: 0.01em;
     color: rgba(255, 255, 255, 0.55);
-    max-width: 540px;
-    margin: 0 auto 16px;
+    max-width: 540px; margin: 0 auto 16px;
   }
   .lead strong { color: rgba(255, 255, 255, 0.9); font-weight: 500; }
   .sign { color: #e9c349; font-weight: 500; margin-top: 8px; }
@@ -183,18 +185,15 @@ src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscrip
   .socials-title { color: rgba(255, 255, 255, 0.85); font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
   .socials-sub { color: rgba(255, 255, 255, 0.4); font-size: 0.92rem; margin-bottom: 22px; }
   .socials { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; max-width: 620px; margin: 0 auto; }
-  /* Cards glassmorphism */
   .social-card {
     display: flex; flex-direction: column; align-items: center; gap: 11px;
-    width: 108px; padding: 20px 12px;
-    border-radius: 18px;
+    width: 108px; padding: 20px 12px; border-radius: 18px;
     background: rgba(255, 255, 255, 0.045);
     border: 1px solid rgba(255, 255, 255, 0.10);
     backdrop-filter: blur(14px) saturate(150%);
     -webkit-backdrop-filter: blur(14px) saturate(150%);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.80);
-    text-decoration: none;
+    color: rgba(255, 255, 255, 0.80); text-decoration: none;
     transition: transform 0.28s, border-color 0.28s, background 0.28s, box-shadow 0.28s, color 0.28s;
   }
   .social-card:hover {
@@ -214,21 +213,12 @@ src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscrip
   }
   .social-card:hover .ic { background: rgba(233, 195, 73, 0.16); transform: scale(1.06); }
   .social-card .ic svg { width: 24px; height: 24px; display: block; }
-  .social-card .lbl {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.66rem; letter-spacing: 0.10em; text-transform: uppercase;
-  }
-  @media (max-width: 520px) { .social-card { width: calc(33.333% - 10px); } }
+  .social-card .lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.10em; text-transform: uppercase; }
 
   .home-btn {
-    display: inline-block;
-    margin-top: 40px;
-    padding: 15px 36px;
-    background: #e9c349;
-    color: #131313;
-    text-decoration: none;
-    font-family: 'JetBrains Mono', monospace;
-    text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem;
+    display: inline-block; margin-top: 40px; padding: 15px 36px;
+    background: #e9c349; color: #131313; text-decoration: none;
+    font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem;
     border-radius: 3px;
     transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
   }
@@ -239,21 +229,34 @@ src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscrip
     font-weight: 700; letter-spacing: -0.02em; color: #fff; text-decoration: none; font-size: 1rem;
   }
 
-  /* ====== Responsive ====== */
-  /* Tablette : on réduit l'échelle des formes de fond pour éviter le débordement */
+  /* ====== Responsive — formes (identique à market-refonte) ====== */
   @media (max-width: 900px) {
-    .shapes { transform: scale(0.75); transform-origin: 50% 42%; }
+    .hero-shape-1 .hero-shape-inner { width: 380px; height: 90px; }
+    .hero-shape-2 .hero-shape-inner { width: 320px; height: 80px; }
+    .hero-shape-3 .hero-shape-inner { width: 200px; height: 55px; }
+    .hero-shape-4 .hero-shape-inner { width: 140px; height: 42px; }
+    .hero-shape-5 .hero-shape-inner { width: 110px; height: 32px; }
+    .hero-shape-1 { left: -15%; top: 12%; }
+    .hero-shape-2 { right: -12%; top: 72%; }
+    .hero-shape-3 { left: -5%; bottom: 8%; }
+    .hero-shape-4 { right: 5%; top: 8%; }
+    .hero-shape-5 { left: 8%; top: 6%; }
   }
+  @media (max-width: 520px) {
+    .hero-shape-1 .hero-shape-inner { width: 260px; height: 64px; }
+    .hero-shape-2 .hero-shape-inner { width: 220px; height: 58px; }
+    .hero-shape-3 .hero-shape-inner { width: 150px; height: 42px; }
+    .hero-shape-4 .hero-shape-inner { width: 110px; height: 34px; }
+    .hero-shape-5 .hero-shape-inner { width: 90px; height: 26px; }
+  }
+
+  /* ====== Responsive — contenu ====== */
   @media (max-width: 768px) {
-    .content { padding: 80px 20px; }
-    /* Les formes sont rétrécies et resserrées : décor discret, pas d'encombrement */
-    .shapes { transform: scale(0.58); transform-origin: 50% 40%; }
-    .hero__wash { filter: blur(48px); }
+    .content { padding: 84px 18px; }
     .top-logo { top: 16px; left: 18px; font-size: 0.92rem; }
   }
   @media (max-width: 520px) {
-    .content { padding: 72px 16px; }
-    .shapes { transform: scale(0.46); transform-origin: 50% 38%; }
+    .content { padding: 76px 16px; }
     .social-card { width: calc(33.333% - 10px); padding: 16px 8px; }
     .social-card .ic { width: 42px; height: 42px; }
     .badge { margin-bottom: 24px; }
@@ -264,42 +267,25 @@ src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscrip
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .shape, .shape__float, .fade { animation: none !important; opacity: 1 !important; transform: none !important; }
+    .hero-shape { animation: none; opacity: 1; transform: rotate(var(--rotate, 0deg)); }
+    .hero-shape-inner, .fade { animation: none; opacity: 1; transform: none; }
   }
 </style>
 </head>
 <body>
 <section class="hero">
-<a class="top-logo" href="/">KINGDOM ADS</a>
+<a class="top-logo" href="https://kingdomads.fr/marketwins/">KINGDOM ADS</a>
 
-<div class="hero__wash"></div>
-
-<div class="shapes" aria-hidden="true">
-  <div class="shape" style="--rot:12deg; --delay:0.3s; left:-10%; top:18%;">
-    <div class="shape__float" style="width:600px; height:140px;">
-      <div class="shape__pill" style="--g: rgba(233,195,73,0.15);"></div>
-    </div>
+<div class="hero-bg-root" aria-hidden="true">
+  <div class="hero-shapes-glow"></div>
+  <div class="hero-shapes">
+    <div class="hero-shape hero-shape-1"><div class="hero-shape-inner"></div></div>
+    <div class="hero-shape hero-shape-2"><div class="hero-shape-inner"></div></div>
+    <div class="hero-shape hero-shape-3"><div class="hero-shape-inner"></div></div>
+    <div class="hero-shape hero-shape-4"><div class="hero-shape-inner"></div></div>
+    <div class="hero-shape hero-shape-5"><div class="hero-shape-inner"></div></div>
   </div>
-  <div class="shape" style="--rot:-15deg; --delay:0.5s; right:-5%; top:72%;">
-    <div class="shape__float" style="width:500px; height:120px;">
-      <div class="shape__pill" style="--g: rgba(212,175,55,0.15);"></div>
-    </div>
-  </div>
-  <div class="shape" style="--rot:-8deg; --delay:0.4s; left:6%; bottom:8%;">
-    <div class="shape__float" style="width:300px; height:80px;">
-      <div class="shape__pill" style="--g: rgba(255,255,255,0.10);"></div>
-    </div>
-  </div>
-  <div class="shape" style="--rot:20deg; --delay:0.6s; right:16%; top:12%;">
-    <div class="shape__float" style="width:200px; height:60px;">
-      <div class="shape__pill" style="--g: rgba(245,200,90,0.16);"></div>
-    </div>
-  </div>
-  <div class="shape" style="--rot:-25deg; --delay:0.7s; left:22%; top:7%;">
-    <div class="shape__float" style="width:150px; height:40px;">
-      <div class="shape__pill" style="--g: rgba(200,169,110,0.15);"></div>
-    </div>
-  </div>
+  <div class="hero-shapes-vignette"></div>
 </div>
 
 <div class="content">
@@ -353,8 +339,6 @@ src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscrip
 
   <a class="home-btn fade d4" href="https://kingdomads.fr/marketwins/">Retour à l'accueil</a>
 </div>
-
-<div class="hero__vignette"></div>
 </section>
 </body>
 </html>
