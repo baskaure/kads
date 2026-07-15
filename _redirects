@@ -6,9 +6,17 @@
 /home                    /                          301
 /accueil                 /                          301
 
-# Page de remerciement (URL propre) — servie AVANT le fallback SPA
+# URLs propres (sans .html)
 /remerciement            /remerciement.html         200
+/mentions-legales        /mentions-legales.html     200
+/politique-confidentialite  /politique-confidentialite.html  200
 
-# SPA fallback (au cas où des routes inexistantes seraient demandées,
-# on revient à l'accueil plutôt qu'un 404 par défaut)
-/*                       /index.html                200
+# Variantes .html → URL propre (force «!» : sinon le fichier statique
+# existant serait servi avant la règle de redirection)
+/remerciement.html            /remerciement            301!
+/mentions-legales.html        /mentions-legales        301!
+/politique-confidentialite.html  /politique-confidentialite  301!
+
+# Toute autre route inexistante → vraie 404 (pas de soft-404 SPA :
+# renvoyer l'accueil en 200 créerait du contenu dupliqué indexable)
+/*                       /404.html                  404

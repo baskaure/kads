@@ -1,9 +1,12 @@
 # Kingdom Ads — robots.txt
 # https://pub-kads.netlify.app/
 
+# /input/ reste crawlable : les images (fondateurs, hero) sont déclarées
+# dans le sitemap et doivent être indexables par Google Images.
+# /remerciement n'est PAS bloqué ici : la page porte un meta noindex,
+# qui doit rester lisible par les crawlers pour être respecté.
 User-agent: *
 Allow: /
-Disallow: /input/
 
 # Bloquer les bots SEO agressifs / scrapers
 User-agent: AhrefsBot

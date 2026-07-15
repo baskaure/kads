@@ -8,7 +8,6 @@
 <!-- Primary SEO -->
 <title>Kingdom Ads — Agence Meta Ads &amp; vidéo publicitaire</title>
 <meta name="description" content="Publicités vidéo scénarisées + pilotage Meta Ads. +50 marques accompagnées, 2 M€ de budget piloté. Audit stratégique gratuit."/>
-<meta name="keywords" content="agence publicité Meta, publicité Facebook Ads, publicité Instagram, agence vidéo publicitaire, copywriting publicitaire, scénarisation pub, acquisition client, scaling Meta Ads, Kingdom Ads, agence acquisition France"/>
 <meta name="author" content="Kingdom Ads"/>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
 <meta name="googlebot" content="index, follow"/>
@@ -21,12 +20,12 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="mobile-web-app-capable" content="yes"/>
 <meta name="referrer" content="strict-origin-when-cross-origin"/>
-<meta name="generator" content="Kingdom Ads"/>
 
-<!-- Canonical & language alternates -->
-<link rel="canonical" href="https://pub-kads.netlify.app/"/>
-<link rel="alternate" hreflang="fr" href="https://pub-kads.netlify.app/"/>
-<link rel="alternate" hreflang="x-default" href="https://pub-kads.netlify.app/"/>
+<!-- Canonical & language alternates — l'URL publique est kingdomads.fr/marketwins ;
+     pub-kads.netlify.app n'est que l'origin du proxy et canonise vers elle. -->
+<link rel="canonical" href="https://kingdomads.fr/marketwins"/>
+<link rel="alternate" hreflang="fr" href="https://kingdomads.fr/marketwins"/>
+<link rel="alternate" hreflang="x-default" href="https://kingdomads.fr/marketwins"/>
 
 <!-- Open Graph -->
 <meta property="og:type" content="website"/>
@@ -34,9 +33,9 @@
 <meta property="og:site_name" content="Kingdom Ads"/>
 <meta property="og:title" content="Kingdom Ads — Agence Meta Ads &amp; vidéo publicitaire"/>
 <meta property="og:description" content="Publicités vidéo scénarisées + pilotage Meta Ads. Une machine d'acquisition complète, du scénario au scaling."/>
-<meta property="og:url" content="https://pub-kads.netlify.app/"/>
-<meta property="og:image" content="https://pub-kads.netlify.app/og-image.jpg"/>
-<meta property="og:image:secure_url" content="https://pub-kads.netlify.app/og-image.jpg"/>
+<meta property="og:url" content="https://kingdomads.fr/marketwins"/>
+<meta property="og:image" content="https://kingdomads.fr/marketwins/og-image.jpg"/>
+<meta property="og:image:secure_url" content="https://kingdomads.fr/marketwins/og-image.jpg"/>
 <meta property="og:image:type" content="image/jpeg"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -46,7 +45,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Kingdom Ads — Agence Meta Ads &amp; vidéo publicitaire"/>
 <meta name="twitter:description" content="Publicités vidéo scénarisées + pilotage Meta Ads. Une machine d'acquisition complète."/>
-<meta name="twitter:image" content="https://pub-kads.netlify.app/og-image.jpg"/>
+<meta name="twitter:image" content="https://kingdomads.fr/marketwins/og-image.jpg"/>
 <meta name="twitter:image:alt" content="Kingdom Ads — Strategic Acquisition Architects"/>
 
 <!-- Favicons & manifest -->
@@ -59,11 +58,9 @@
 <!-- Performance: pre-establish connections to remote origins -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-<link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin=""/>
 <link rel="preconnect" href="https://calendly.com"/>
 <link rel="dns-prefetch" href="https://calendly.com"/>
-<link rel="dns-prefetch" href="https://images.unsplash.com"/>
-<link rel="preload" as="image" href="input/alex-800.webp" fetchpriority="high"/>
+<link rel="preload" as="image" href="input/cinema-1600.webp" imagesrcset="input/cinema-800.webp 800w, input/cinema-1600.webp 1600w" imagesizes="100vw" fetchpriority="high"/>
 
 <!-- Calendly : préconnexion seulement. Le CSS et le JS sont chargés à la demande
      (au clic / à l'approche du widget inline) via le loader en bas de page. -->
@@ -627,6 +624,35 @@ src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscrip
             .expand-hint .icon { width: 14px; height: 14px; }
         }
 
+        /* FAQ — native details/summary, styled to the architectural theme */
+        .faq-item summary {
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.25rem;
+            padding: 1.25rem 1.5rem;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item .faq-chevron {
+            flex-shrink: 0;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .faq-item[open] .faq-chevron {
+            transform: rotate(45deg);
+            color: #e9c349;
+        }
+        .faq-item {
+            transition: border-color 0.3s ease;
+        }
+        .faq-item[open] {
+            border-color: rgba(233, 195, 73, 0.5);
+        }
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+        }
+
         /* Offset anchor jumps so the floating header doesn't cover section titles */
         section[id], [id="methode"] { scroll-margin-top: 96px; }
 
@@ -661,28 +687,37 @@ src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscrip
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://pub-kads.netlify.app/#organization",
+      "@id": "https://kingdomads.fr/#organization",
       "name": "Kingdom Ads",
+      "legalName": "KINGDOM ADS",
       "alternateName": "Strategic Acquisition Architects",
-      "url": "https://pub-kads.netlify.app/",
+      "url": "https://kingdomads.fr/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://pub-kads.netlify.app/logo.png",
+        "url": "https://kingdomads.fr/marketwins/logo.png",
         "width": 512,
         "height": 512
       },
-      "image": "https://pub-kads.netlify.app/og-image.jpg",
+      "image": "https://kingdomads.fr/marketwins/og-image.jpg",
       "description": "Agence publicité Meta et vidéo qui transforme votre marque en machine d'acquisition. Scénarisation, copywriting, diffusion et scaling pilotés par la donnée.",
       "slogan": "Strategic Acquisition Architects",
       "founder": [
-        { "@type": "Person", "@id": "https://pub-kads.netlify.app/#alexandre", "name": "Alexandre", "jobTitle": "Founder, Strategy", "email": "mailto:alex@kingdomads.fr", "worksFor": { "@id": "https://pub-kads.netlify.app/#organization" } },
-        { "@type": "Person", "@id": "https://pub-kads.netlify.app/#william", "name": "William", "jobTitle": "Founder, Creative", "email": "mailto:william@kingdomads.fr", "worksFor": { "@id": "https://pub-kads.netlify.app/#organization" } }
+        { "@type": "Person", "@id": "https://kingdomads.fr/#alexandre", "name": "Alexandre Adamsha", "jobTitle": "Founder, Strategy", "email": "mailto:alex@kingdomads.fr", "worksFor": { "@id": "https://kingdomads.fr/#organization" } },
+        { "@type": "Person", "@id": "https://kingdomads.fr/#william", "name": "William Adamsha", "jobTitle": "Founder, Creative", "email": "mailto:william@kingdomads.fr", "worksFor": { "@id": "https://kingdomads.fr/#organization" } }
       ],
       "employee": [
-        { "@id": "https://pub-kads.netlify.app/#alexandre" },
-        { "@id": "https://pub-kads.netlify.app/#william" }
+        { "@id": "https://kingdomads.fr/#alexandre" },
+        { "@id": "https://kingdomads.fr/#william" }
       ],
-      "foundingDate": "2015",
+      "foundingDate": "2022-06-21",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "199 rue Hélène Boucher",
+        "addressLocality": "Castelnau-le-Lez",
+        "postalCode": "34170",
+        "addressRegion": "Occitanie",
+        "addressCountry": "FR"
+      },
       "areaServed": { "@type": "Country", "name": "France" },
       "knowsAbout": ["Meta Ads", "Facebook Ads", "Instagram Ads", "Publicité vidéo", "Copywriting", "Scénarisation publicitaire", "Acquisition client", "Scaling Meta Ads"],
       "contactPoint": [
@@ -690,23 +725,28 @@ src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscrip
         { "@type": "ContactPoint", "contactType": "creative", "email": "william@kingdomads.fr", "availableLanguage": ["French", "English"] }
       ],
       "sameAs": [
-        "https://www.linkedin.com/company/kingdomads",
-        "https://www.instagram.com/kingdomads",
-        "https://www.youtube.com/@kingdomads",
-        "https://twitter.com/kingdomads"
+        "https://www.instagram.com/kingdomads/"
       ]
     },
     {
       "@type": "ProfessionalService",
-      "@id": "https://pub-kads.netlify.app/#service",
-      "name": "Kingdom Ads",
-      "url": "https://pub-kads.netlify.app/",
-      "image": "https://pub-kads.netlify.app/og-image.jpg",
+      "@id": "https://kingdomads.fr/marketwins#service",
+      "name": "Kingdom Ads — Marketwins",
+      "url": "https://kingdomads.fr/marketwins",
+      "image": "https://kingdomads.fr/marketwins/og-image.jpg",
       "description": "Architecture publicitaire complète : audit data, scénarisation stratégique, captation haute précision, diffusion Meta Ads, itération continue.",
       "priceRange": "€€€",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "199 rue Hélène Boucher",
+        "addressLocality": "Castelnau-le-Lez",
+        "postalCode": "34170",
+        "addressRegion": "Occitanie",
+        "addressCountry": "FR"
+      },
       "areaServed": { "@type": "Country", "name": "France" },
       "serviceType": ["Publicité Meta", "Création vidéo publicitaire", "Copywriting", "Scénarisation", "Acquisition client", "Scaling Ads"],
-      "provider": { "@id": "https://pub-kads.netlify.app/#organization" },
+      "provider": { "@id": "https://kingdomads.fr/#organization" },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Architecture d'acquisition",
@@ -717,45 +757,40 @@ src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscrip
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diffusion Meta Ads", "description": "Pilotage de l'algorithme et scaling." } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Optimisation continue", "description": "Itération et amélioration des résultats." } }
         ]
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5.0",
-        "reviewCount": "50",
-        "bestRating": "5"
       }
     },
     {
       "@type": "WebSite",
-      "@id": "https://pub-kads.netlify.app/#website",
-      "url": "https://pub-kads.netlify.app/",
+      "@id": "https://kingdomads.fr/#website",
+      "url": "https://kingdomads.fr/",
       "name": "Kingdom Ads",
       "inLanguage": "fr-FR",
-      "publisher": { "@id": "https://pub-kads.netlify.app/#organization" }
+      "publisher": { "@id": "https://kingdomads.fr/#organization" }
     },
     {
       "@type": "WebPage",
-      "@id": "https://pub-kads.netlify.app/#webpage",
-      "url": "https://pub-kads.netlify.app/",
+      "@id": "https://kingdomads.fr/marketwins#webpage",
+      "url": "https://kingdomads.fr/marketwins",
       "name": "Kingdom Ads — Strategic Acquisition Architects",
-      "isPartOf": { "@id": "https://pub-kads.netlify.app/#website" },
-      "about": { "@id": "https://pub-kads.netlify.app/#organization" },
-      "primaryImageOfPage": "https://pub-kads.netlify.app/og-image.jpg",
+      "isPartOf": { "@id": "https://kingdomads.fr/#website" },
+      "about": { "@id": "https://kingdomads.fr/#organization" },
+      "primaryImageOfPage": "https://kingdomads.fr/marketwins/og-image.jpg",
       "inLanguage": "fr-FR",
       "datePublished": "2025-01-01",
-      "dateModified": "2026-05-26",
-      "breadcrumb": { "@id": "https://pub-kads.netlify.app/#breadcrumb" }
+      "dateModified": "2026-07-15",
+      "breadcrumb": { "@id": "https://kingdomads.fr/marketwins#breadcrumb" }
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://pub-kads.netlify.app/#breadcrumb",
+      "@id": "https://kingdomads.fr/marketwins#breadcrumb",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://pub-kads.netlify.app/" }
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://kingdomads.fr/" },
+        { "@type": "ListItem", "position": 2, "name": "Marketwins", "item": "https://kingdomads.fr/marketwins" }
       ]
     },
     {
       "@type": "FAQPage",
-      "@id": "https://pub-kads.netlify.app/#faq",
+      "@id": "https://kingdomads.fr/marketwins#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -838,7 +873,7 @@ src="https://www.facebook.com/tr?id=2073138586484176&amp;ev=PageView&amp;noscrip
 <div class="expand-sticky">
 <div class="expand-bg"></div>
 <div id="expand-media" class="expand-media">
-<img class="expand-img" src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Salle de cinéma — métaphore du storytelling publicitaire Kingdom Ads" width="1600" height="900" loading="lazy" decoding="async" onerror="this.style.display='none'"/>
+<img class="expand-img" src="input/cinema-1600.webp" srcset="input/cinema-800.webp 800w, input/cinema-1600.webp 1600w" sizes="100vw" alt="Salle de cinéma — métaphore du storytelling publicitaire Kingdom Ads" width="1600" height="1067" fetchpriority="high" decoding="async"/>
 <div id="expand-media-overlay" class="expand-media-overlay" style="opacity:0.55"></div>
 <div id="expand-caption" class="expand-caption" style="opacity:0">
 <p class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase">Tout commence par votre histoire.</p>
@@ -923,7 +958,7 @@ Défilez pour dévoiler
 </div>
 <div class="md:col-span-7 flex flex-col md:flex-row gap-4 items-stretch md:items-end scroll-reveal">
 <div class="relative group overflow-hidden flex-1 border border-architectural-gray">
-<img class="w-full h-[380px] sm:h-[460px] md:h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-700" src="input/alex-800.webp" srcset="input/alex-800.webp 800w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px" alt="Alexandre, co-fondateur de Kingdom Ads — Strategy &amp; publicité Meta" width="800" height="600" decoding="async" fetchpriority="high"/>
+<img class="w-full h-[380px] sm:h-[460px] md:h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-700" src="input/alex-800.webp" srcset="input/alex-800.webp 800w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px" alt="Alexandre, co-fondateur de Kingdom Ads — Strategy &amp; publicité Meta" width="800" height="600" loading="lazy" decoding="async"/>
 <div class="absolute bottom-6 left-6 md:bottom-8 md:left-8 right-6 md:right-auto">
 <div class="text-primary font-headline-md text-headline-md tracking-[0.4em] md:tracking-[1em]">ALEXANDRE</div>
 </div>
@@ -1205,6 +1240,41 @@ Défilez pour dévoiler
 </div>
 </div>
 </section>
+<!-- Section: FAQ (contenu visible = miroir exact du schema FAQPage en JSON-LD) -->
+<section id="faq" class="py-20 md:py-32 px-margin-mobile md:px-margin-desktop bg-black border-y border-architectural-gray" aria-labelledby="faq-title">
+<div class="max-w-4xl mx-auto">
+<div class="text-center mb-12 md:mb-16 scroll-reveal">
+<h2 id="faq-title" class="font-headline-lg text-headline-lg text-primary uppercase">Questions fréquentes</h2>
+<p class="mt-6 text-on-surface-variant font-body-lg text-body-lg">Ce que les marques nous demandent avant de construire avec nous.</p>
+</div>
+<div class="space-y-4 scroll-reveal">
+<details class="faq-item border border-architectural-gray bg-black">
+<summary class="font-headline-md text-headline-md text-primary">En quoi Kingdom Ads diffère d'un studio vidéo classique ?
+<svg class="icon icon--lg faq-chevron text-on-surface-variant" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+</summary>
+<p class="faq-answer text-on-surface-variant font-body-md text-body-md">Un studio vidéo se concentre sur l'esthétique pure. Kingdom Ads est une agence d'acquisition : scénarisation basée sur la donnée, pilotage quotidien des budgets, tracking et attribution précise, et optimisation continue par creative testing.</p>
+</details>
+<details class="faq-item border border-architectural-gray bg-black">
+<summary class="font-headline-md text-headline-md text-primary">Quels secteurs Kingdom Ads accompagne-t-elle ?
+<svg class="icon icon--lg faq-chevron text-on-surface-variant" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+</summary>
+<p class="faq-answer text-on-surface-variant font-body-md text-body-md">B2B, immobilier, formation, joaillerie, SaaS et retail — neuf secteurs maîtrisés à ce jour.</p>
+</details>
+<details class="faq-item border border-architectural-gray bg-black">
+<summary class="font-headline-md text-headline-md text-primary">Combien de marques ont déjà travaillé avec Kingdom Ads ?
+<svg class="icon icon--lg faq-chevron text-on-surface-variant" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+</summary>
+<p class="faq-answer text-on-surface-variant font-body-md text-body-md">Plus de 50 marques accompagnées, plus de 2 millions d'euros de budget publicitaire piloté, sur 11 ans d'expérience dans la publicité.</p>
+</details>
+<details class="faq-item border border-architectural-gray bg-black">
+<summary class="font-headline-md text-headline-md text-primary">Quelle est la méthode Kingdom Ads ?
+<svg class="icon icon--lg faq-chevron text-on-surface-variant" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+</summary>
+<p class="faq-answer text-on-surface-variant font-body-md text-body-md">Un processus en cinq étapes : audit data et assets, écriture et scénarisation stratégique, tournage haute précision, diffusion sur l'algorithme Meta avec scaling, itération continue jusqu'au résultat.</p>
+</details>
+</div>
+</div>
+</section>
 <!-- Final CTA Section -->
 <section id="contact" class="py-24 md:py-48 px-margin-mobile md:px-margin-desktop border-b border-architectural-gray relative overflow-hidden text-center cta-gold-gradient" aria-labelledby="contact-title">
 <div class="absolute inset-0 blueprint-grid opacity-10 pointer-events-none" aria-hidden="true"></div>
@@ -1269,8 +1339,8 @@ Défilez pour dévoiler
                 © 2026 KINGDOM ADS // STRATEGIC ACQUISITION ARCHITECTS
             </div>
 <nav class="flex flex-wrap justify-center gap-x-6 gap-y-3 md:gap-8" aria-label="Liens de pied de page">
-<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-secondary transition-opacity" href="/mentions-legales" rel="nofollow">Mentions légales</a>
-<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-secondary transition-opacity" href="/politique-confidentialite" rel="nofollow">Confidentialité</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-secondary transition-opacity" href="/mentions-legales">Mentions légales</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-secondary transition-opacity" href="/politique-confidentialite">Confidentialité</a>
 <a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-secondary transition-opacity" href="/sitemap.xml">Plan du site</a>
 </nav>
 </div>
@@ -1925,7 +1995,12 @@ Défilez pour dévoiler
                 if (!isCalendlyEvent(e)) return;
                 if (e.data.event === 'calendly.event_scheduled' && !redirected) {
                     redirected = true;
-                    window.location.href = '/remerciement';
+                    // La page est servie sur deux hôtes : pub-kads.netlify.app/
+                    // et kingdomads.fr/marketwins (proxy). On préserve le préfixe
+                    // pour que /remerciement reste résolu par CE site.
+                    var basePath = window.location.pathname.indexOf('/marketwins') === 0
+                        ? '/marketwins' : '';
+                    window.location.href = basePath + '/remerciement';
                 }
             });
         })();

@@ -7,11 +7,9 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://pub-kads.netlify.app/</loc>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://pub-kads.netlify.app/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://pub-kads.netlify.app/"/>
     <image:image>
       <image:loc>https://pub-kads.netlify.app/og-image.jpg</image:loc>
       <image:title>Kingdom Ads — Strategic Acquisition Architects</image:title>
@@ -24,6 +22,10 @@
     <image:image>
       <image:loc>https://pub-kads.netlify.app/input/William-ADAMSHA-400x380.webp</image:loc>
       <image:title>William, co-fondateur Kingdom Ads</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pub-kads.netlify.app/input/cinema-1600.webp</image:loc>
+      <image:title>Salle de cinéma — storytelling publicitaire Kingdom Ads</image:title>
     </image:image>
   </url>
 </urlset>
